@@ -1,0 +1,98 @@
+﻿@model List<FPS.DataModel.CarriersDetail>
+@{
+    ViewBag.Title = "Add carriers";
+
+    <style type="text/css">
+        .grid {
+            width: 100%;
+        }
+    </style>
+}
+<section class="innerBanner"><img src="~/img/admin-banner.jpg" alt=""></section>
+<section class="innerContent">
+        <div class="row rowSPCLInnerpages">
+            <h3 class="gridaboveH3">Carrier List</h3>
+            <div class="addBtnCont">
+                <input type="button" class="btn-StandardReverse" value="Add New Carrier" onclick="OpenCreatePopup()" />
+            </div>
+
+            <div class="gridOuterDiv">
+                @{
+                    WebGrid grid = new WebGrid(Model);
+                    @grid.GetHtml(
+         tableStyle: "gridtable",
+         fillEmptyRows: false,
+         headerStyle: "gvHeading",
+         alternatingRowStyle: "gvAlternateRow",
+         rowStyle: "gvRow",
+         footerStyle: "gvFooter",
+
+         mode: WebGridPagerModes.All,
+         firstText: "<< First",
+         previousText: "< Prev",
+         nextText: "Next >",
+         lastText: "Last >>",
+         columns: new[] {
+         grid.Column("Id",header: "ID",canSort:false),
+         grid.Column("CarriersDetails",header: "Carriers Details",canSort:false),
+         grid.Column("TransitTime", header: "Transit Time",canSort:false),
+         grid.Column("DiscountedPrice" ,header: "Discounted Price",canSort:false),
+         grid.Column("CarriersLogo", header: "Carriers Logo",canSort:false),
+         grid.Column("ContactusId", header: "Action", canSort: false,
+
+         format: @<text>
+            @Html.Raw("<img src='../img/blankImg.png' class='editGrid' title='Edit' onclick='EditCarrier("+ item.id + ")'  />")
+            @Html.Raw("<img src='../img/blankImg.png' class='delGrid' title='Delete' onclick='DeleteCarrier("+ item.id +")'  />")
+        </text>
+        )
+     })
+                }
+            </div>
+            <div id="DivToAppendPartialVoew"></div>
+        </div>
+
+</section>
+
+  <script type="text/javascript">
+    function EditCarrier(cid) {
+        var ph = $("#DivToAppendPartialVoew");
+        ph.load("EditCarrier?carrierid=" + cid, function () {
+            ph.dialog({
+                modal: true,
+                width: 500,
+                height: 438,
+                title: "Edit Carrier",
+                resizable: false
+            });
+        });
+    }
+
+    function DeleteCarrier(cid) {
+        if (confirm("Do you want to delete carrier: " + cid)) {
+            var data = { 'carrierId': cid }
+            $.post('Delete', data,
+            function (data) {
+                if (data == true)
+                    location = location.href;
+                else
+                    alert("Could not delete");
+            });
+        }
+    }
+
+    function OpenCreatePopup() {
+
+        var div = $("#DivToAppendPartialVoew");
+
+        div.load("CreateCarrier", function () {
+            div.dialog({
+                modal: true,
+                width: 500,
+                height: 438,
+                title: "Add New Carriers",
+                resizable: false
+            });
+        });
+    }
+
+</script>

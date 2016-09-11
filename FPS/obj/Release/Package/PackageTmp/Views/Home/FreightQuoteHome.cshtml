@@ -1,0 +1,62 @@
+﻿
+@model FPS.Models.QuoteResultModels
+@{
+    ViewBag.Title = "Quote Result";
+}
+
+@using (Html.BeginForm("QuoteResult", "Quote", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="container margin-top">
+        <div class="row margin-bottom ">
+            <div class="col-md-12">
+                <h2 class="borderBottom">Quote Results </h2>
+            </div>
+        </div>
+        <input id="hideFreightClassValue" name="hideFreightClassValue" type="hidden" value="false">
+        <div class="row margin-bottom">
+            <div class="col-md-12">
+                <h2 class="margin-bottom">
+                    <span> Items to be Shipped</span>
+                    <span class="classTagline">Don't know your freight class? </span>
+                </h2>
+                <div class="QuickQuoteTable">
+                    <table id="QuickQuote" width="100%">
+                        <tbody>
+                            <tr width="100%">
+                                @{
+                                    if (!ReferenceEquals(Model.CarriersDetails, null))
+                                    {
+                                        var grid = new WebGrid(Model.CarriersDetails, canSort: false);
+
+                                        @grid.GetHtml(
+                                               tableStyle: "gridtable",
+                                                  headerStyle: "itemHeadRow",
+                                                  alternatingRowStyle: "CommodityRow1",
+                                                columns: grid.Columns(
+                                                    grid.Column("Carriers Details", format:@<text>@item.CarriersDetails</text>),
+                                                    grid.Column("Transit Time", format:@<text>@item.TransitTime</text>),
+                                                    grid.Column("Total Discounted Price", format:@<text>$@item.DiscountedPrice</text>),
+                                                    grid.Column(header: "", format: (item) => Html.ActionLink("Continue", "QuickQuoteContinue", new { id = item.ID, QuoteID = item.QuoteID }, new { @class = "FormButtonResetSearchPanel" })),
+                                                     grid.Column(header: "", format: (item) => Html.ActionLink("Delete", "QuickQuoteDelete", new { id = item.ID, QuoteID = item.QuoteID }, new { @class = "FormButtonResetSearchPanel" }))
+                                                )
+                                            )
+                                    }
+                                }
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--<span class="classInfo">(Don't know your freight class? Call 1-800-716-7608)</span>-->
+
+            </div>
+        </div>
+    </div>
+                                    }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+}

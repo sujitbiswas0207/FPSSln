@@ -1,0 +1,1283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FPSDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Country" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CType" Type="int" Nullable="false" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="500" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="sendTextMessg" Type="bit" />
+          <Property Name="isVerified" Type="bit" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarriersDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarriersDetails" Type="nvarchar" MaxLength="500" />
+          <Property Name="TransitTime" Type="int" />
+          <Property Name="DiscountedPrice" Type="float" />
+          <Property Name="CarriersLogo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDAte" Type="datetime" />
+          <Property Name="QuoteID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ItemCollectionAddress">
+          <Key>
+            <PropertyRef Name="UserShipmentDetailId" />
+          </Key>
+          <Property Name="UserShipmentDetailId" Type="int" Nullable="false" />
+          <Property Name="Longitude" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="StartCurrentLocation" Type="nvarchar(max)" />
+          <Property Name="FromDate" Type="datetime" Nullable="false" />
+          <Property Name="ToDate" Type="datetime" Nullable="false" />
+          <Property Name="SpecificDateTime" Type="datetime" Nullable="false" />
+          <Property Name="SpecificDateAttribute" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemDeliveryAddress">
+          <Key>
+            <PropertyRef Name="UserShipmentDetailId" />
+          </Key>
+          <Property Name="UserShipmentDetailId" Type="int" Nullable="false" />
+          <Property Name="Longitude" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="DeliveryCurrentLocation" Type="nvarchar(max)" />
+          <Property Name="FromDate" Type="datetime" Nullable="false" />
+          <Property Name="ToDate" Type="datetime" Nullable="false" />
+          <Property Name="SpecificDateTime" Type="datetime" Nullable="false" />
+          <Property Name="SpecificDateAttribute" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="500" />
+          <Property Name="PackgingID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="WeightType" Type="varchar" MaxLength="500" />
+          <Property Name="Dimention_Length" Type="int" />
+          <Property Name="Dimention_Width" Type="int" />
+          <Property Name="Dimention_Height" Type="int" />
+          <Property Name="HightUnit" Type="varchar" MaxLength="50" />
+          <Property Name="FrightClass" Type="float" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="QuoteID" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemDropoffDetails">
+          <Key>
+            <PropertyRef Name="ItemDropoffId" />
+          </Key>
+          <Property Name="ItemDropoffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company" Type="nvarchar" MaxLength="500" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="AlternatePhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="Apartment" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationType" Type="nvarchar" MaxLength="100" />
+          <Property Name="QuoteID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemPickupDetails">
+          <Key>
+            <PropertyRef Name="ItemPickupId" />
+          </Key>
+          <Property Name="ItemPickupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PickupDate" Type="datetime" />
+          <Property Name="Company" Type="nvarchar" MaxLength="500" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="AlternatePhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="Apartment" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationType" Type="nvarchar" MaxLength="100" />
+          <Property Name="QuoteID" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentsDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExDate_Month" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExDate_Year" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentDAte" Type="datetime" />
+          <Property Name="CVVCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsStoredCard" Type="bit" />
+          <Property Name="CouponCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="QuoteID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="500" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QuickQuoteDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuickQuoteType" Type="int" Nullable="false" />
+          <Property Name="StartLocationExtraService" Type="nvarchar(max)" />
+          <Property Name="EndLocationExtraService" Type="nvarchar(max)" />
+          <Property Name="StartLocationType" Type="int" Nullable="false" />
+          <Property Name="EndLocationType" Type="int" Nullable="false" />
+          <Property Name="TruckType" Type="int" Nullable="false" />
+          <Property Name="PickupTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CarrierID" Type="int" />
+        </EntityType>
+        <EntityType Name="ShipmentDetails">
+          <Key>
+            <PropertyRef Name="ShipmentId" />
+          </Key>
+          <Property Name="ShipmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemdetailsDesc" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PackagingID" Type="nvarchar" MaxLength="500" />
+          <Property Name="ItemCondition" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity_Length" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity_Width" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity_Height" Type="nvarchar" MaxLength="50" />
+          <Property Name="Commodity_Category" Type="nvarchar" MaxLength="500" />
+          <Property Name="NMFC_Code" Type="nvarchar" MaxLength="100" />
+          <Property Name="Isfreight_Insurance" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalValue_Shipment" Type="nvarchar" MaxLength="50" />
+          <Property Name="QuoteID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblCommodityCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="int" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblCondition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="int" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblFreightClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="int" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblPackaging">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Value" Type="int" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TruckloadQuoteDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShipmentType" Type="int" Nullable="false" />
+          <Property Name="StartLocationZip" Type="nvarchar" MaxLength="100" />
+          <Property Name="EndLocationZip" Type="nvarchar" MaxLength="100" />
+          <Property Name="StartLocationType" Type="int" Nullable="false" />
+          <Property Name="EndLocationType" Type="int" Nullable="false" />
+          <Property Name="PickupTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CarrierID" Type="int" />
+          <Property Name="Weight" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="PassResetID" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ItemDetails_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemDetails" Type="Self.ItemDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_QuickQuoteDetails_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuickQuoteDetails" Type="Self.QuickQuoteDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuickQuoteDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TruckloadQuoteDetails_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TruckloadQuoteDetails" Type="Self.TruckloadQuoteDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TruckloadQuoteDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FPSDatabaseModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarriersDetails" EntityType="Self.CarriersDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemCollectionAddress" EntityType="Self.ItemCollectionAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemDeliveryAddress" EntityType="Self.ItemDeliveryAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemDetails" EntityType="Self.ItemDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemDropoffDetails" EntityType="Self.ItemDropoffDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemPickupDetails" EntityType="Self.ItemPickupDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentsDetails" EntityType="Self.PaymentsDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuickQuoteDetails" EntityType="Self.QuickQuoteDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShipmentDetails" EntityType="Self.ShipmentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCommodityCategory" EntityType="Self.tblCommodityCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCondition" EntityType="Self.tblCondition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFreightClass" EntityType="Self.tblFreightClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPackaging" EntityType="Self.tblPackaging" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TruckloadQuoteDetails" EntityType="Self.TruckloadQuoteDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ItemDetails_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_ItemDetails_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ItemDetails" EntitySet="ItemDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_QuickQuoteDetails_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_QuickQuoteDetails_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="QuickQuoteDetails" EntitySet="QuickQuoteDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TruckloadQuoteDetails_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_TruckloadQuoteDetails_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TruckloadQuoteDetails" EntitySet="TruckloadQuoteDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FPSDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserRoles" />
+          <NavigationProperty Name="ItemDetails" Relationship="Self.FK_dbo_ItemDetails_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="ItemDetails" />
+          <NavigationProperty Name="QuickQuoteDetails" Relationship="Self.FK_dbo_QuickQuoteDetails_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="QuickQuoteDetails" />
+          <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sendTextMessg" Type="Boolean" />
+          <Property Name="isVerified" Type="Boolean" />
+          <NavigationProperty Name="TruckloadQuoteDetails" Relationship="FPSDatabaseModel.FK_dbo_TruckloadQuoteDetails_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="TruckloadQuoteDetail" />
+        </EntityType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PackgingID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="WeightType" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Dimention_Length" Type="Int32" />
+          <Property Name="Dimention_Width" Type="Int32" />
+          <Property Name="Dimention_Height" Type="Int32" />
+          <Property Name="HightUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FrightClass" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="QuoteID" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_ItemDetails_dbo_AspNetUsers_UserId" FromRole="ItemDetails" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="QuickQuoteDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuickQuoteType" Type="Int32" Nullable="false" />
+          <Property Name="StartLocationType" Type="Int32" Nullable="false" />
+          <Property Name="EndLocationType" Type="Int32" Nullable="false" />
+          <Property Name="TruckType" Type="Int32" Nullable="false" />
+          <Property Name="PickupTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_QuickQuoteDetails_dbo_AspNetUsers_UserId" FromRole="QuickQuoteDetails" ToRole="AspNetUsers" />
+          <Property Name="StartLocationExtraService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndLocationExtraService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CarrierID" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ItemDetails_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ItemDetails" Type="Self.ItemDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_QuickQuoteDetails_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuickQuoteDetails" Type="Self.QuickQuoteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuickQuoteDetails">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FPSDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRole" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="ItemDetails" EntityType="Self.ItemDetail" />
+          <EntitySet Name="QuickQuoteDetails" EntityType="Self.QuickQuoteDetail" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ItemDetails_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_ItemDetails_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ItemDetails" EntitySet="ItemDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_QuickQuoteDetails_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_QuickQuoteDetails_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="QuickQuoteDetails" EntitySet="QuickQuoteDetails" />
+          </AssociationSet>
+          <EntitySet Name="CarriersDetails" EntityType="FPSDatabaseModel.CarriersDetail" />
+          <EntitySet Name="ItemCollectionAddresses" EntityType="FPSDatabaseModel.ItemCollectionAddress" />
+          <EntitySet Name="ItemDeliveryAddresses" EntityType="FPSDatabaseModel.ItemDeliveryAddress" />
+          <EntitySet Name="ItemDropoffDetails" EntityType="FPSDatabaseModel.ItemDropoffDetail" />
+          <EntitySet Name="ItemPickupDetails" EntityType="FPSDatabaseModel.ItemPickupDetail" />
+          <EntitySet Name="ShipmentDetails" EntityType="FPSDatabaseModel.ShipmentDetail" />
+          <EntitySet Name="PaymentsDetails" EntityType="FPSDatabaseModel.PaymentsDetail" />
+          <EntitySet Name="Users" EntityType="FPSDatabaseModel.User" />
+          <EntitySet Name="tblCommodityCategories" EntityType="FPSDatabaseModel.tblCommodityCategory" />
+          <EntitySet Name="tblConditions" EntityType="FPSDatabaseModel.tblCondition" />
+          <EntitySet Name="tblFreightClasses" EntityType="FPSDatabaseModel.tblFreightClass" />
+          <EntitySet Name="tblPackagings" EntityType="FPSDatabaseModel.tblPackaging" />
+          <EntitySet Name="TruckloadQuoteDetails" EntityType="FPSDatabaseModel.TruckloadQuoteDetail" />
+          <AssociationSet Name="FK_dbo_TruckloadQuoteDetails_dbo_AspNetUsers_UserId" Association="FPSDatabaseModel.FK_dbo_TruckloadQuoteDetails_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="TruckloadQuoteDetail" EntitySet="TruckloadQuoteDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CarriersDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CarriersDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TransitTime" Type="Int32" />
+          <Property Name="DiscountedPrice" Type="Double" />
+          <Property Name="CarriersLogo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDAte" Type="DateTime" Precision="3" />
+          <Property Name="QuoteID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ItemCollectionAddress">
+          <Key>
+            <PropertyRef Name="UserShipmentDetailId" />
+          </Key>
+          <Property Name="UserShipmentDetailId" Type="Int32" Nullable="false" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SpecificDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SpecificDateAttribute" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartCurrentLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ItemDeliveryAddress">
+          <Key>
+            <PropertyRef Name="UserShipmentDetailId" />
+          </Key>
+          <Property Name="UserShipmentDetailId" Type="Int32" Nullable="false" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SpecificDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SpecificDateAttribute" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeliveryCurrentLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ItemDropoffDetail">
+          <Key>
+            <PropertyRef Name="ItemDropoffId" />
+          </Key>
+          <Property Name="ItemDropoffId" Type="Int32" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AlternatePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Apartment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QuoteID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ItemPickupDetail">
+          <Key>
+            <PropertyRef Name="ItemPickupId" />
+          </Key>
+          <Property Name="ItemPickupId" Type="Int32" Nullable="false" />
+          <Property Name="PickupDate" Type="DateTime" Precision="3" />
+          <Property Name="Company" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AlternatePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Apartment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="QuoteID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ShipmentDetail">
+          <Key>
+            <PropertyRef Name="ShipmentId" />
+          </Key>
+          <Property Name="ShipmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemdetailsDesc" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PackagingID" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ItemCondition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity_Length" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity_Width" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity_Height" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Commodity_Category" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NMFC_Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Isfreight_Insurance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalValue_Shipment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuoteID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PaymentsDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExDate_Month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExDate_Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentDAte" Type="DateTime" Precision="3" />
+          <Property Name="CVVCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsStoredCard" Type="Boolean" />
+          <Property Name="CouponCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuoteID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CardType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PassResetID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="tblCommodityCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblCondition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblFreightClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblPackaging">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TruckloadQuoteDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShipmentType" Type="Int32" Nullable="false" />
+          <Property Name="StartLocationZip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EndLocationZip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StartLocationType" Type="Int32" Nullable="false" />
+          <Property Name="EndLocationType" Type="Int32" Nullable="false" />
+          <Property Name="PickupTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CarrierID" Type="Int32" />
+          <Property Name="Weight" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="FPSDatabaseModel.FK_dbo_TruckloadQuoteDetails_dbo_AspNetUsers_UserId" FromRole="TruckloadQuoteDetail" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_dbo_TruckloadQuoteDetails_dbo_AspNetUsers_UserId">
+          <End Type="FPSDatabaseModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FPSDatabaseModel.TruckloadQuoteDetail" Role="TruckloadQuoteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TruckloadQuoteDetail">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FPSDatabaseModelStoreContainer" CdmEntityContainer="FPSDatabaseEntities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserRoles">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.AspNetUserRole">
+              <MappingFragment StoreEntitySet="AspNetUserRoles">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="isVerified" ColumnName="isVerified" />
+                <ScalarProperty Name="sendTextMessg" ColumnName="sendTextMessg" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="CType" ColumnName="CType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="C__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemDetails">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.ItemDetail">
+              <MappingFragment StoreEntitySet="ItemDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="PackgingID" ColumnName="PackgingID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="WeightType" ColumnName="WeightType" />
+                <ScalarProperty Name="Dimention_Length" ColumnName="Dimention_Length" />
+                <ScalarProperty Name="Dimention_Width" ColumnName="Dimention_Width" />
+                <ScalarProperty Name="Dimention_Height" ColumnName="Dimention_Height" />
+                <ScalarProperty Name="HightUnit" ColumnName="HightUnit" />
+                <ScalarProperty Name="FrightClass" ColumnName="FrightClass" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="QuoteID" ColumnName="QuoteID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuickQuoteDetails">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.QuickQuoteDetail">
+              <MappingFragment StoreEntitySet="QuickQuoteDetails">
+                <ScalarProperty Name="CarrierID" ColumnName="CarrierID" />
+                <ScalarProperty Name="EndLocationExtraService" ColumnName="EndLocationExtraService" />
+                <ScalarProperty Name="StartLocationExtraService" ColumnName="StartLocationExtraService" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuickQuoteType" ColumnName="QuickQuoteType" />
+                <ScalarProperty Name="StartLocationType" ColumnName="StartLocationType" />
+                <ScalarProperty Name="EndLocationType" ColumnName="EndLocationType" />
+                <ScalarProperty Name="TruckType" ColumnName="TruckType" />
+                <ScalarProperty Name="PickupTime" ColumnName="PickupTime" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarriersDetails">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.CarriersDetail">
+              <MappingFragment StoreEntitySet="CarriersDetails">
+                <ScalarProperty Name="QuoteID" ColumnName="QuoteID" />
+                <ScalarProperty Name="CreatedDAte" ColumnName="CreatedDAte" />
+                <ScalarProperty Name="CarriersLogo" ColumnName="CarriersLogo" />
+                <ScalarProperty Name="DiscountedPrice" ColumnName="DiscountedPrice" />
+                <ScalarProperty Name="TransitTime" ColumnName="TransitTime" />
+                <ScalarProperty Name="CarriersDetails" ColumnName="CarriersDetails" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemCollectionAddresses">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.ItemCollectionAddress">
+              <MappingFragment StoreEntitySet="ItemCollectionAddress">
+                <ScalarProperty Name="StartCurrentLocation" ColumnName="StartCurrentLocation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SpecificDateAttribute" ColumnName="SpecificDateAttribute" />
+                <ScalarProperty Name="SpecificDateTime" ColumnName="SpecificDateTime" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="UserShipmentDetailId" ColumnName="UserShipmentDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemDeliveryAddresses">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.ItemDeliveryAddress">
+              <MappingFragment StoreEntitySet="ItemDeliveryAddress">
+                <ScalarProperty Name="DeliveryCurrentLocation" ColumnName="DeliveryCurrentLocation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SpecificDateAttribute" ColumnName="SpecificDateAttribute" />
+                <ScalarProperty Name="SpecificDateTime" ColumnName="SpecificDateTime" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="UserShipmentDetailId" ColumnName="UserShipmentDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemDropoffDetails">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.ItemDropoffDetail">
+              <MappingFragment StoreEntitySet="ItemDropoffDetails">
+                <ScalarProperty Name="QuoteID" ColumnName="QuoteID" />
+                <ScalarProperty Name="LocationType" ColumnName="LocationType" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="AlternatePhone" ColumnName="AlternatePhone" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="ItemDropoffId" ColumnName="ItemDropoffId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemPickupDetails">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.ItemPickupDetail">
+              <MappingFragment StoreEntitySet="ItemPickupDetails">
+                <ScalarProperty Name="QuoteID" ColumnName="QuoteID" />
+                <ScalarProperty Name="LocationType" ColumnName="LocationType" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="AlternatePhone" ColumnName="AlternatePhone" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="PickupDate" ColumnName="PickupDate" />
+                <ScalarProperty Name="ItemPickupId" ColumnName="ItemPickupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShipmentDetails">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.ShipmentDetail">
+              <MappingFragment StoreEntitySet="ShipmentDetails">
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="QuoteID" ColumnName="QuoteID" />
+                <ScalarProperty Name="TotalValue_Shipment" ColumnName="TotalValue_Shipment" />
+                <ScalarProperty Name="Isfreight_Insurance" ColumnName="Isfreight_Insurance" />
+                <ScalarProperty Name="NMFC_Code" ColumnName="NMFC_Code" />
+                <ScalarProperty Name="Commodity_Category" ColumnName="Commodity_Category" />
+                <ScalarProperty Name="Quantity_Height" ColumnName="Quantity_Height" />
+                <ScalarProperty Name="Quantity_Width" ColumnName="Quantity_Width" />
+                <ScalarProperty Name="Quantity_Length" ColumnName="Quantity_Length" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemCondition" ColumnName="ItemCondition" />
+                <ScalarProperty Name="PackagingID" ColumnName="PackagingID" />
+                <ScalarProperty Name="ItemdetailsDesc" ColumnName="ItemdetailsDesc" />
+                <ScalarProperty Name="ShipmentId" ColumnName="ShipmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentsDetails">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.PaymentsDetail">
+              <MappingFragment StoreEntitySet="PaymentsDetails">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="QuoteID" ColumnName="QuoteID" />
+                <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
+                <ScalarProperty Name="IsStoredCard" ColumnName="IsStoredCard" />
+                <ScalarProperty Name="CVVCode" ColumnName="CVVCode" />
+                <ScalarProperty Name="PaymentDAte" ColumnName="PaymentDAte" />
+                <ScalarProperty Name="ExDate_Year" ColumnName="ExDate_Year" />
+                <ScalarProperty Name="ExDate_Month" ColumnName="ExDate_Month" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PassResetID" ColumnName="PassResetID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCommodityCategories">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.tblCommodityCategory">
+              <MappingFragment StoreEntitySet="tblCommodityCategory">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConditions">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.tblCondition">
+              <MappingFragment StoreEntitySet="tblCondition">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFreightClasses">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.tblFreightClass">
+              <MappingFragment StoreEntitySet="tblFreightClass">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPackagings">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.tblPackaging">
+              <MappingFragment StoreEntitySet="tblPackaging">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TruckloadQuoteDetails">
+            <EntityTypeMapping TypeName="FPSDatabaseModel.TruckloadQuoteDetail">
+              <MappingFragment StoreEntitySet="TruckloadQuoteDetails">
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="CarrierID" ColumnName="CarrierID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PickupTime" ColumnName="PickupTime" />
+                <ScalarProperty Name="EndLocationType" ColumnName="EndLocationType" />
+                <ScalarProperty Name="StartLocationType" ColumnName="StartLocationType" />
+                <ScalarProperty Name="EndLocationZip" ColumnName="EndLocationZip" />
+                <ScalarProperty Name="StartLocationZip" ColumnName="StartLocationZip" />
+                <ScalarProperty Name="ShipmentType" ColumnName="ShipmentType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

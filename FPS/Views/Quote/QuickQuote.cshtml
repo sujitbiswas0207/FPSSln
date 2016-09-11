@@ -1,0 +1,815 @@
+﻿
+@model FPS.Models.QuoteViewModel
+@{
+    ViewBag.Title = "Quick Quote";
+}
+
+<link rel="stylesheet" href="~/css/jquery-ui.css.css">
+
+<style>
+    .controls {
+        margin-top: 16px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #StartLocation {
+        background-color: #fff;
+        padding: 0 11px 0 13px;
+        width: 400px;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        text-overflow: ellipsis;
+    }
+
+        #StartLocation:focus {
+            border-color: #4d90fe;
+            margin-left: -1px;
+            padding-left: 14px; /* Regular padding-left + 1. */
+            width: 401px;
+        }
+
+    #EndLocation {
+        background-color: #fff;
+        padding: 0 11px 0 13px;
+        width: 400px;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        text-overflow: ellipsis;
+    }
+
+        #EndLocation:focus {
+            border-color: #4d90fe;
+            margin-left: -1px;
+            padding-left: 14px; /* Regular padding-left + 1. */
+            width: 401px;
+        }
+
+    .pac-container {
+        font-family: Roboto;
+    }
+
+    #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+    }
+
+        #type-selector label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
+</style>
+
+@*<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJYvkFB5vIPVVBo1z95oZn2EUjnB0uHCg&callback=initMap&v=3.exp&libraries=places"
+        type="text/javascript"></script>*@
+@*<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2FnRPgSMLShH57n3Ru2BNBtjVOhFB2Dw&callback=initMap&v=3.exp&libraries=places"
+        type="text/javascript"></script>*@
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+<script>
+
+    function initialize() {
+        var mapOptions = {
+            //center: new google.maps.LatLng(-33.8688, 151.2195),
+            zoom: 13
+        };
+
+        //var directionsService = new google.maps.DirectionsService();
+        //directionsDisplay = new google.maps.DirectionsRenderer();
+        //var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+        //var mapOptions = { zoom: 7, mapTypeId: google.maps.MapTypeId.ROADMAP, center: chicago }
+        //map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        //directionsDisplay.setMap(map);
+
+        $(".pac-container").css("visibility", "hidden");
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+        var input = @*/** @type {HTMLInputElement} */*@(
+            document.getElementById('StartLocation'));
+
+        var types = document.getElementById('type-selector');
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        //document.getElementById('map-canvas').style.display = "none";
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+
+            if (input.value == "") {
+                $("#map-canvas").hide();
+            }
+            else {
+                $(".pac-container").css("visibility", "visible");
+                $("#map-canvas").show();
+            }
+
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);  // Why 17? Because it looks good.
+            }
+            marker.setIcon(@*/** @type {google.maps.Icon} */*@({
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(35, 35)
+            }));
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+            document.getElementById('hdnpaclat').value = place.geometry.location.lat();
+            document.getElementById('hdnpaclong').value = place.geometry.location.lng();
+            document.getElementById('hdnpicklocation').value = place.address_components[0].short_name;
+
+           // document.getElementById('mapcity').value = findComponent(place, 'administrative_area_level_3') || findComponent(place, 'locality');
+            
+            var address = '';
+            if (place.address_components) {
+                var componentForm = {
+                    locality: 'short_name',
+                    street_number: 'short_name',
+                    route: 'long_name',
+                    administrative_area_level_1: 'short_name',
+                    country: 'long_name',
+                    postal_code: 'short_name'
+                };
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var addressType = place.address_components[i].types[0];
+                    if (componentForm[addressType]) {
+                        var val = place.address_components[i][componentForm[addressType]];
+                        hdnid = "pickup_" + addressType;
+                        
+                        document.getElementById(hdnid).value = val;
+                    }
+                }
+                address = [
+                  (place.address_components[0] && place.address_components[0].short_name || ''),
+                  (place.address_components[1] && place.address_components[1].short_name || ''),
+                  (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
+           
+            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+            infowindow.open(map, marker);
+        });
+
+        //function findComponent(result, type) {
+        //    alert(9);
+        //    var component = _.find(result.address_components, function (component) {
+        //        alert(component);
+        //        alert(component.short_name);
+        //        return _.include(component.types, type);
+        //    });
+            
+        //    return component && component.short_name;
+        //}
+
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        function setupClickListener(id, types) {
+            var radioButton = document.getElementById(id);
+            google.maps.event.addDomListener(radioButton, 'click', function () {
+                autocomplete.setTypes(types);
+            });
+        }
+
+        setupClickListener('changetype-all', []);
+        setupClickListener('changetype-address', ['address']);
+        setupClickListener('changetype-establishment', ['establishment']);
+        setupClickListener('changetype-geocode', ['geocode']);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    function postData() {
+        furnitureShippingDetail = {};
+        furnitureShippingDetail.ItemCollectionAddress = document.getElementById('hdnpaclat').value + "," + document.getElementById('hdnpaclong').value;
+        furnitureShippingDetail.ItemDeliveryAddress = document.getElementById('hdndellat').value + "," + document.getElementById('hdndellong').value;
+        furnitureShippingDetail.ItemCollectionLocation = document.getElementById('hdnpicklocation').value;
+        furnitureShippingDetail.ItemDeliveryLocation = document.getElementById('hdndeliverylocation').value;
+
+    }
+
+    function myFunction() {
+        var startlType = '@ViewBag.StartLocationType';
+        if (startlType) {
+            CallStartChangefunc(startlType);
+        }
+
+        var endlType = '@ViewBag.EndLocationType';
+        if (endlType) {
+            CallEndChangefunc(endlType);
+        }
+    }
+
+    function CallStartChangefunc(val) {
+        if (val == 2) {
+            document.getElementById("startid4").checked = false;
+
+            document.getElementById("startli4").style.display = "none";
+            document.getElementById("startextraText").style.display = "none";
+            document.getElementById("startli1").style.display = "block";
+            document.getElementById("startli2").style.display = "block";
+            document.getElementById("startli3").style.display = "block";
+        } else if (val == 1) {
+            document.getElementById("startid2").checked = false;
+            document.getElementById("startid3").checked = false;
+            document.getElementById("startid4").checked = true;
+
+            document.getElementById("startli1").style.display = "block";
+            document.getElementById("startli2").style.display = "none";
+            document.getElementById("startli3").style.display = "none";
+            document.getElementById("startextraText").style.display = "none";
+            document.getElementById("startli4").style.display = "block";
+        } else if (val == 4) {
+            document.getElementById("startid1").checked = false;
+            document.getElementById("startid3").checked = false;
+            document.getElementById("startid2").checked = false;
+            document.getElementById("startid4").checked = false;
+
+            document.getElementById("startli1").style.display = "none";
+            document.getElementById("startli2").style.display = "none";
+            document.getElementById("startli3").style.display = "none";
+            document.getElementById("startli4").style.display = "none";
+            document.getElementById("startextraText").style.display = "block";
+        }
+    }
+    function CallEndChangefunc(val) {
+        if (val == 2) {
+            document.getElementById("endid5").checked = false;
+
+            document.getElementById("endli1").style.display = "block";
+            document.getElementById("endextraText").style.display = "none";
+            document.getElementById("endli2").style.display = "block";
+            document.getElementById("endli3").style.display = "block";
+            document.getElementById("endli4").style.display = "block";
+            document.getElementById("endli5").style.display = "none";
+        } else if (val == 1) {
+            document.getElementById("endid1").checked = false;
+            document.getElementById("endid3").checked = false;
+            document.getElementById("endid4").checked = false;
+            document.getElementById("endid5").checked = true;
+
+            document.getElementById("endli1").style.display = "none";
+            document.getElementById("endli2").style.display = "block";
+            document.getElementById("endli3").style.display = "none";
+            document.getElementById("endextraText").style.display = "none";
+            document.getElementById("endli4").style.display = "none";
+            document.getElementById("endli5").style.display = "block";
+        } else if (val == 4) {
+            document.getElementById("endid2").checked = false;
+            document.getElementById("endid3").checked = false;
+            document.getElementById("endid4").checked = false;
+            document.getElementById("endid5").checked = false;
+
+            document.getElementById("endli1").style.display = "block";
+            document.getElementById("endli2").style.display = "none";
+            document.getElementById("endli3").style.display = "none";
+            document.getElementById("endli4").style.display = "none";
+            document.getElementById("endli5").style.display = "none";
+            document.getElementById("endextraText").style.display = "block";
+        }
+    }
+
+</script>
+
+<script>
+
+    function initialize1() {
+        var mapOptions = {
+            //center: new google.maps.LatLng(-33.8688, 151.2195),
+            zoom: 13
+        };
+
+        $(".pac-container").css("visibility", "hidden");
+
+        var map = new google.maps.Map(document.getElementById('map-canvas-delivery'),
+          mapOptions);
+
+        var input = @*/** @type {HTMLInputElement} */*@(
+            document.getElementById('EndLocation'));
+
+        var types = document.getElementById('type-selector');
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        //document.getElementById('map-canvas').style.display = "none";
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+
+            if (input.value == "") {
+                $("#map-canvas-delivery").hide();
+            }
+            else {
+                $(".pac-container").css("visibility", "visible");
+                $("#map-canvas-delivery").show();
+            }
+
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);  // Why 17? Because it looks good.
+            }
+            marker.setIcon(@*/** @type {google.maps.Icon} */*@({
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(35, 35)
+            }));
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+            
+            document.getElementById('hdndellat').value = place.geometry.location.lat();
+            document.getElementById('hdndellong').value = place.geometry.location.lng();
+            document.getElementById('hdndeliverylocation').value = place.address_components[0].short_name;
+
+            var address = '';
+            if (place.address_components) {
+                var componentForm = {
+                    locality: 'short_name',
+                    street_number: 'short_name',
+                    route: 'long_name',
+                    administrative_area_level_1: 'short_name',
+                    country: 'long_name',
+                    postal_code: 'short_name'
+                };
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var addressType = place.address_components[i].types[0];
+                    if (componentForm[addressType]) {
+                        var val = place.address_components[i][componentForm[addressType]];
+                        var hdnid = "delivery_" + addressType;
+                        document.getElementById(hdnid).value = val;
+                    }
+                }
+                address = [
+                  (place.address_components[0] && place.address_components[0].short_name || ''),
+                  (place.address_components[1] && place.address_components[1].short_name || ''),
+                  (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
+
+            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+            infowindow.open(map, marker);
+        });
+
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        function setupClickListener(id, types) {
+            var radioButton = document.getElementById(id);
+            google.maps.event.addDomListener(radioButton, 'click', function () {
+                autocomplete.setTypes(types);
+            });
+        }
+
+        setupClickListener('changetype-all', []);
+        setupClickListener('changetype-address', ['address']);
+        setupClickListener('changetype-establishment', ['establishment']);
+        setupClickListener('changetype-geocode', ['geocode']);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize1);
+
+</script>
+
+@using (Html.BeginForm("QuickQuote", "Quote", FormMethod.Post, new { role = "form" }))
+{
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>FPS</title>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+    </head>
+    <body onload="myFunction()">
+        <div class="container">
+            <div class="clear">&nbsp;</div>
+            <div class="row margin-bottom">
+                <div class="col-md-12">
+                    <h2 class="borderBottom"> What Are You Shipping? </h2>
+                </div>
+            </div>
+            <div class="row margin-bottom">
+                <div class="col-md-4">
+
+                    <div class="formList">
+                        <ul>
+                            <li class="border-left">
+                                <input type="radio" name="QuickQuoteType" value="1" checked />
+                                <img id="" class="accessorialTip" src="~/Image/icon2.png" style="border-width:0px;">  <label for="dlstExtraS_ctl09_chkAcc">Less-than-Truckload (LTL) Shipment</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="formList">
+                        <ul>
+                            <li class="border-left">
+                                <input id="rYes" type="radio" name="QuickQuoteType" value="2" onClick="location.href='Truckloadquote';">
+                                <img id="" class="accessorialTip" src="~/Image/icon5.png" style="border-width:0px;">  <label for="dlstExtraS_ctl09_chkAcc">Full Truckload (TL) Shipment</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="formList">
+                        <ul>
+                            <li>
+                                <input type="radio" name="QuickQuoteType" value="3" />
+                                <img id="" class="accessorialTip" src="~/Image/icon1.png" style="border-width:0px;">  <label for="dlstExtraS_ctl09_chkAcc">Motorcycle</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <label style="color:red;">@ViewBag.errmsg</label>
+            </div>
+
+            <div class="row margin-bottom">
+                <div class="col-md-6">
+                    <h2 class="borderBottom"></h2>
+                    <div class="formList">
+                        <h3>Start Location</h3>
+                        <ul>
+                            <li>
+                                <div class="leftSec">
+                                    <label for="dlstExtraS_ctl09_chkAcc">City or zip / Postal code</label>
+                                </div>
+                                <div class="rightSec">
+                                    <input id="StartLocation" class="inputFormList" type="text"
+                                           placeholder="Enter a location" value="@ViewBag.picklocation" />
+                                    <input type="hidden" id="hdnpaclat" name="hdnpaclat" />
+                                    <input type="hidden" id="hdnpaclong" name="hdnpaclong" />
+                                    <input type="hidden" id="hdnpicklocation" name="hdnpicklocation" />
+                                    <input type="hidden" id="map-canvas" />
+                                    <input type="hidden" id="mapcity" />
+
+                                    <input type="hidden" id="pickup_locality" name="pickup_locality" />
+                                    <input type="hidden" id="pickup_administrative_area_level_1" name="pickup_administrative_area_level_1"/>
+                                    <input type="hidden" id="pickup_postal_code" name="pickup_postal_code" />
+                                    <input type="hidden" id="pickup_country" name="pickup_country"/>
+                                    @*@Html.TextBoxFor(m => m.StartLocation, new { @class = "inputFormList" })<br />
+                                        @Html.ValidationMessageFor(m => m.StartLocation, "", new { @class = "text-danger" })*@
+                                </div>
+                            </li>
+                            <li>
+                                <div class="leftSec">
+                                    @Html.LabelFor(m => m.StartLocationType, new { @class = "dlstExtraS_ctl09_chkAcc" })
+                                </div>
+                                <div class="rightSec">
+                                    @Html.DropDownList("StartLocationType", ViewData["LocationType"] as List<SelectListItem>, new { @class = "inputFormList", @onchange = "CallStartChangefunc(this.value)" })
+                                    <br />@Html.ValidationMessageFor(m => m.StartLocationType, "", new { @class = "text-danger" })
+                                </div>
+                            </li>
+                            <li id="startextraText" style="display:none">
+                                NEED A LIFTGATE?
+
+                                If you're shipping something that weighs over 100lbs. you'll need a way to load it into the truck. You could save money on extra charges by having a few friends help you load or if you can't find a way then we can supply a liftgate ready truck for you.
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="borderBottom"></h2>
+                    <div class="formList">
+                        <h3>End Location</h3>
+                        <ul>
+                            <li>
+                                <div class="leftSec">
+                                    @Html.LabelFor(m => m.EndLocation, new { @class = "dlstExtraS_ctl09_chkAcc" })
+                                </div>
+                                <div class="rightSec">
+                                    <input id="EndLocation" class="inputFormList" type="text"
+                                           placeholder="Enter a delivery location" value="@ViewBag.deliverylocation" />
+                                    <input type="hidden" id="hdndellat" name="hdndellat" />
+                                    <input type="hidden" id="hdndellong" name="hdndellong" />
+                                    <input type="hidden" id="hdndeliverylocation" name="hdndeliverylocation" />
+                                    <input type="hidden" id="map-canvas-delivery" />
+
+                                    <input type="hidden" id="delivery_locality" name="delivery_locality" />
+                                    <input type="hidden" id="delivery_administrative_area_level_1" name="delivery_administrative_area_level_1" />
+                                    <input type="hidden" id="delivery_postal_code" name="delivery_postal_code" />
+                                    <input type="hidden" id="delivery_country" name="delivery_country" />
+                                    @*@Html.TextBoxFor(m => m.StartLocation, new { @class = "inputFormList" })<br />
+                                        @Html.ValidationMessageFor(m => m.EndLocation, "", new { @class = "text-danger" })*@
+                                    @*@Html.TextBoxFor(m => m.EndLocation, new { @class = "inputFormList" })<br />
+                                        @Html.ValidationMessageFor(m => m.EndLocation, "", new { @class = "text-danger" })*@
+                                </div>
+                            </li>
+                            <li>
+                                <div class="leftSec">
+                                    @Html.LabelFor(m => m.EndLocationType, new { @class = "dlstExtraS_ctl09_chkAcc" })
+                                </div>
+                                <div class="rightSec">
+                                    @Html.DropDownList("EndLocationType", ViewData["LocationType"] as List<SelectListItem>, new { @class = "inputFormList", @onchange = "CallEndChangefunc(this.value)" })
+                                    <br />@Html.ValidationMessageFor(m => m.EndLocationType, "", new { @class = "text-danger" })
+                                </div>
+                            </li>
+                            <li id="endextraText" style="display:none">
+                                NEED A LIFTGATE?
+
+                                If you're shipping something that weighs over 100lbs. you'll need a way to load it into the truck. You could save money on extra charges by having a few friends help you load or if you can't find a way then we can supply a liftgate ready truck for you.
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-bottom">
+                <div class="col-md-6">
+                    <div class="formList">
+                        <h3>Extra Services Here? ($)</h3>
+                        <ul>
+                            <li id="startli1">
+                                @if (ViewBag.vstartid1 == "checked")
+                                {
+                                    <input type="checkbox" name="StartlocationExtraservice" id="startid1" value="Lift Gate at Pickup Point" checked="checked">}
+                else
+                {<input type="checkbox" name="StartlocationExtraservice" id="startid1" value="Lift Gate at Pickup Point" /> }
+                                <label for="dlstExtraS_ctl09_chkAcc">Lift Gate at Pickup Point</label>
+                                <img id="" class="accessorialTip" src="~/Image/qtnmark.gif" style="border-width:0px;" title="When requested by the customer, the carrier will provide lifting or lowering devices to accomplish pickup for additional fee.">
+                            </li>
+                            <li id="startli2">
+                                @if (ViewBag.vstartid2 == "checked")
+                                {
+                                    <input type="checkbox" name="StartlocationExtraservice" id="startid2" value="Limited Access Pick Up" checked="checked">}
+                                else
+                                {<input type="checkbox" name="StartlocationExtraservice" id="startid2" value="Limited Access Pick Up"> }
+                                <label for="dlstExtraS_ctl09_chkAcc">Limited Access Pick Up</label>
+                                <img id="" class="accessorialTip" src="~/Image/qtnmark.gif" style="border-width:0px;" title="The term LIMITED ACCESS LOCATION includes but is not limited to the following: Individual storage units, churches, schools, commercial establishments not open to walk-in public during normal business hours, construction sites, farms, fairs or carnivals">
+                            </li>
+                            <li id="startli3">
+                                @if (ViewBag.vstartid3 == "checked")
+                                {
+                                    <input type="checkbox" name="StartlocationExtraservice" id="startid3" value="Tradeshow Origin" checked="checked">}
+                                else
+                                { <input type="checkbox" name="StartlocationExtraservice" id="startid3" value="Tradeshow Origin">}
+                                <label for="dlstExtraS_ctl09_chkAcc">Tradeshow Origin</label>
+                                <img id="" class="accessorialTip" src="~/Image/qtnmark.gif" style="border-width:0px;" title="A charge will be accessed when picked up at a trade show location. This also applies on show to show shipments.">
+                            </li>
+                            <li id="startli4" style="display:none">
+                                <input type="checkbox" name="StartlocationExtraservice" disabled="disabled" checked="checked" id="startid4" value="Residential Pickup">
+                                <label for="dlstExtraS_ctl09_chkAcc">Residential Pickup</label>
+                                <img id="" class="accessorialTip" src="~/Image/qtnmark.gif" style="border-width:0px;" title="The carrier will assess a charge when required or requested to make a pickup at a non-commercial location. The term non-commercial applies to private residences, apartments, churches, schools, camps, and other such locations not generally recognized as co.">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="formList">
+                        <h3>Extra Services Here? ($)</h3>
+                        <ul>
+                            <li id="endli1">
+                                @if (ViewBag.endid1 == "checked")
+                                {
+                                    <input type="checkbox" name="EndlocationExtraservice" id="endid1" value="Call before Delivery" checked="checked">}
+                                else
+                                {<input type="checkbox" name="EndlocationExtraservice" id="endid1" value="Call before Delivery"> }
+                                <label for="dlstExtraS_ctl09_chkAcc">Call before Delivery</label>
+                                <img id="" class="accessorialTip" src="~/Image/qtnmark.gif" style="border-width:0px;" title="The carrier will provide notification prior to delivery when requested for an additional fee. This service is already incuded with residential and tradeshow deliveries. Very often the carrier will call without requesting this service. Avoid using unless the situation requires it.">
+                            </li>
+                            <li id="endli2">
+                                @if (ViewBag.endid2 == "checked")
+                                {
+                                    <input type="checkbox" name="EndlocationExtraservice" id="endid2" value="Lift Gate at Delivery Point" checked="checked">}
+                                else
+                                {<input type="checkbox" name="EndlocationExtraservice" id="endid2" value="Lift Gate at Delivery Point"> }
+                                <label for="dlstExtraS_ctl09_chkAcc">Lift Gate at Delivery Point</label>
+                                <img id="" class="accessorialTip" src="~/Image/qtnmark.gif" style="border-width:0px;" title="When requested by the customer, the carrier will provide lifting or lowering devices to accomplish delivery for an additional fee.">
+                            </li>
+                            <li id="endli3">
+                                @if (ViewBag.endid3 == "checked")
+                                {
+                                    <input type="checkbox" name="EndlocationExtraservice" id="endid3" value="Limited Access Delivery" checked="checked">}
+                                else
+                                {<input type="checkbox" name="EndlocationExtraservice" id="endid3" value="Limited Access Delivery"> }
+                                <label for="dlstExtraS_ctl09_chkAcc">Limited Access Delivery</label>
+                                <img id="" class="accessorialTip" src="~/Image/qtnmark.gif" style="border-width:0px;" title="The term LIMITED ACCESS LOCATION includes but is not limited to the following: Individual storage units, churches, schools, commercial establishments not open to walk-in public during normal business hours, construction sites, farms, fairs or carnivals.">
+                            </li>
+                            <li id="endli4">
+                                @if (ViewBag.endid4 == "checked")
+                                {
+                                    <input type="checkbox" name="EndlocationExtraservice" id="endid4" value="Tradeshow Delivery" checked="checked">}
+                                else
+                                {<input type="checkbox" name="EndlocationExtraservice" id="endid4" value="Tradeshow Delivery"> }
+                                <label for="dlstExtraS_ctl09_chkAcc">Tradeshow Delivery</label>
+                                <img id="" class="accessorialTip" src="~/Image/qtnmark.gif" style="border-width:0px;" title="A charge will be accessed when delivered to a trade show location. This also applies on show to show shipments.">
+                            </li>
+                            <li id="endli5" style="display:none">
+                                <input type="checkbox" name="EndlocationExtraservice" disabled="disabled" checked="checked" id="endid5" value="Residential Pickup">
+                                <label for="dlstExtraS_ctl09_chkAcc">Residential Pickup</label>
+                                <img id="" class="accessorialTip" src="~/Image/qtnmark.gif" style="border-width:0px;" title="The carrier will assess a charge when required or requested to make a delivery at a non-Commercial location. The term non-Commercial applies to private residences, apartments, churches, schools, camps, and other such locations not generally recognised as.">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-bottom">
+                <div class="col-md-12">
+                    <h2 class="borderBottom"> Items to be Shipped </h2>
+                    <div class="clearFix"></div>
+                    <div class="QuickQuoteTable">
+
+                        @{
+                            if (!ReferenceEquals(Model.ItemDetails, null))
+                            {
+                                var grid = new WebGrid(Model.ItemDetails, canSort: false);
+                                <div id="grid">
+                                    @grid.GetHtml(
+                              tableStyle: "gridtable",
+                              headerStyle: "itemHeadRow",
+                              alternatingRowStyle: "CommodityRow1",
+                              columns: grid.Columns(
+                              grid.Column(null, null, format: @<input type="hidden" name="IDHidden" id="IDHidden" value="@item.Id" />),
+                              grid.Column(" Packaging ", format:@<text>@item.ItemName</text>),
+                              grid.Column("Quantity  ", format:@<text>@item.Quantity</text>),
+                              grid.Column("Total weight  ", format:@<text>@item.Total @item.WeightType</text>),
+                              grid.Column("Total Dimentions  ", format:@<text>@item.Dimention_Length ,   @item.Dimention_Width ,    @item.Dimention_Height (@item.HightUnit)</text>),
+                              grid.Column("Fright Class  ", format:@<text>@item.FrightClass</text>)
+                            )
+                          )
+                                </div>
+                            }
+                        }
+                        <table border="0" id="QuickQuote" width="100%" class="margin-top">
+                            <tbody>
+
+
+
+                                <input type="hidden" name="ItemIDHidden" id="ItemIDHidden" value="" />
+
+
+                                <tr class="itemHeadRow">
+                                    <td class="num itemHead" align="left">#</td>
+                                    <td class="packaging itemHead" align="left"> Packaging </td>
+                                    <td class="quantity itemHead" align="left"> Quantity </td>
+                                    <td class="weight itemHead" align="left"> Total weight </td>
+                                    <td class="dim itemHead" align="left"><span id="lblDimensionsOrLinearFeet">Total Dimentions</span></td>
+                                    <td class="class itemHead" align="left"> Fright Class </td>
+                                    <td class="delete itemHead" align="left">&nbsp;</td>
+                                </tr>
+                                <tr id="CommodityRow1">
+                                    <td class="num" align="left"> 1 </td>
+                                    <td class="packaging" align="left" style="width: 175px;">
+                                        <select name="Packaging1" id="Packaging1" class="txtboxcommon" style="width: 170px;" onchange="packagingListOnChange(this);">
+                                            <option value="7">Pallets: Standard (40” x 48”)</option>
+                                            <option value="8">Pallets (48” x 48”)</option>
+                                            <option value="9">Pallets (60" x 48")</option>
+                                            <option value="10">Pallets (enter dimensions)</option>
+                                            <option value="1">Boxed</option>
+                                            <option value="2">Crated</option>
+                                            <option value="3">Drums or Barrels</option>
+                                            <option value="5">Un-Packaged</option>
+                                        </select>
+                                    </td>
+                                    <td class="quantity" align="left"><input name="quantity" type="text" id="quantity" value="1" size="5" onkeypress="return __validateInteger(this, VAL_KEYPRESS);" class="txtboxcommon" maxlength="10"></td>
+                                    <td class="weight" align="left">
+                                        <input name="Weight1" type="text" id="Weight1" class="txtboxcommon" onkeypress="return __validateDecimal(this, VAL_KEYPRESS,2);" size="5" maxlength="6">
+                                        <select id="WeightUOM1" class="txtboxcommon" name="WeightUOM1">
+                                            <option value="lbs">lbs</option>
+                                        </select>
+                                    </td>
+                                    <td class="dim" align="left">
+                                        <input id="DimensionsActive1" class="txtboxcommon" type="hidden" name="DimensionsActive1" value="y">
+                                        <div id="DimensionsDiv1">
+                                            L
+                                            <input id="Length1" type="text" class="txtboxcommon" name="Length1" value="40" size="3" maxlength="10">
+                                            &nbsp;&nbsp;
+                                            W
+                                            <input id="Width1" type="text" class="txtboxcommon" name="Width1" value="48" onkeypress="return __validateInteger(this, VAL_KEYPRESS);" size="3" maxlength="10">
+                                            &nbsp;&nbsp;
+                                            H
+                                            <input id="Height1" type="text" class="txtboxcommon" name="Height1" value="" onkeypress="return __validateInteger(this, VAL_KEYPRESS);" size="3" maxlength="10">
+                                            &nbsp;&nbsp;
+                                            <select id="DimensionsUOM1" class="txtboxcommon" name="DimensionsUOM1">
+                                                <option value="in">in</option>
+                                                <option value="ft">ft</option>
+                                            </select>
+                                        </div>
+                                        <div id="VolumeDiv1" style="display: none">
+                                            <input id="Volume1" class="txtboxcommon" type="text" name="Volume1" onkeypress="return __validateInteger(this, VAL_KEYPRESS);" value="" size="3" maxlength="10">
+                                            <select id="VolumeUOM1" class="txtboxcommon" name="VolumeUOM1">
+                                                <option value="F">feet</option>
+                                                <!--  <option value="M">cubic meter</option>-->
+                                            </select>
+                                            (<a href="javascript:dimensionsToggle(1, true)">Dimensions</a>)
+                                        </div>
+                                    </td>
+                                    <td class="class" align="left">
+                                        <!--<input id="Class1" class="txtboxcommon" type="text" name="Class1" value="" size="2"  maxlength="10">-->
+
+                                        <select name="Frightclass" id="Frightclass" class="txtboxcommon">
+                                            <option value="0">None</option>
+                                            <option value="50">50</option>
+                                            <option value="55">55</option>
+                                            <option value="60">60</option>
+                                            <option value="65">65</option>
+                                            <option value="70">70</option>
+                                            <option value="77.5">77.5</option>
+                                            <option value="85">85</option>
+                                            <option value="92.5">92.5</option>
+                                            <option value="100">100</option>
+                                            <option value="110">110</option>
+                                            <option value="125">125</option>
+                                            <option value="150">150</option>
+                                            <option value="175">175</option>
+                                            <option value="200">200</option>
+                                            <option value="250">250</option>
+                                            <option value="300">300</option>
+                                            <option value="400">400</option>
+                                            <option value="500">500</option>
+                                        </select>
+                                        <input id="nmfc1" name="nmfc1" type="hidden">
+                                        <input id="description1" name="description1" type="hidden">
+                                        <span id="ChosenText1" style="display: none">Freight Class Chosen</span><br>
+                                        <a id="SelectText1" href="javascript:toggleFreightClass(1)" style="display: none">Change</a>
+                                        <input id="usedWizard1" name="usedWizard1" type="hidden" value="false">
+                                    </td>
+                                    <!-- <a href="#"><img src="~/~/Image/lookup.gif" alt="delete" width="44" height="16"></a></td>-->
+                                    <td align="left" colspan="1" class="delete">
+                                        <!--<img src="~/Image/btn_deleteInactive.gif" alt="delete" width="16" height="16">-->
+                                        <input type="submit" value="@ViewBag.btnText" class="FormButtonResetSearchPanel" name="action">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="clearFix margin-top"></div>
+            <div class="row">
+                <div class="col-md-8 text-align-right margin-bottom">
+                    <a href="#headerHolder">
+                        <input type="submit" class="btn-normal" id="ibtnQuickQuote" style="border:0px;" value="Get Quote" name="action" onclick="postData">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+                            }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+}
+
+

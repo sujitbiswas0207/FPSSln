@@ -1,0 +1,97 @@
+﻿@model List<FPS.DataModel.tblCondition>
+@{
+    ViewBag.Title = "Add Condition";
+
+    <style type="text/css">
+        .grid {
+            width: 100%;
+        }
+    </style>
+}
+<section class="innerBanner"><img src="~/img/admin-banner.jpg" alt=""></section>
+<section class="innerContent">
+    <div class="row rowSPCLInnerpages">
+        <h3 class="gridaboveH3">Condition List</h3>
+        <div class="addBtnCont">
+            <input type="button" class="btn-StandardReverse" value="Add New Condition" onclick="OpenCreatePopup()" />
+            
+        </div>
+
+       
+        <div class="gridOuterDiv">
+            @{
+                WebGrid grid = new WebGrid(Model);
+    @grid.GetHtml(
+         tableStyle: "gridtable",
+         fillEmptyRows: false,
+         headerStyle: "gvHeading",
+         alternatingRowStyle: "gvAlternateRow",
+         rowStyle: "gvRow",
+         footerStyle: "gvFooter",
+
+         mode: WebGridPagerModes.All,
+         firstText: "<< First",
+         previousText: "< Prev",
+         nextText: "Next >",
+         lastText: "Last >>",
+         columns: new[] {
+         grid.Column("Id",header: "ID",canSort:false),
+         grid.Column("Name",header: "Name",canSort:false),
+         grid.Column("Id", header: "Action", canSort: false,
+
+         format: @<text>
+        @Html.Raw("<img src='../img/blankImg.png' class='editGrid' title='Edit' onclick='EditCondition("+ item.id + ")'  />")
+        @Html.Raw("<img src='../img/blankImg.png' class='delGrid' title='Delete' onclick='DeleteCondition("+ item.id +")'  />")
+        </text>
+        )
+     })
+            }
+        </div>
+        <div id="DivToAppendPartialVoew"></div>
+
+    </div>
+</section>
+<script type="text/javascript">
+    function EditCondition(cid) {
+        var ph = $("#DivToAppendPartialVoew");
+        ph.load("EditCondition?conditionid=" + cid, function () {
+            ph.dialog({
+                modal: true,
+                width: 500,
+                height: 438,
+                title: "Edit package",
+                resizable: false
+            });
+        });
+    }
+
+    function DeleteCondition(pid) {
+        if (confirm("Do you want to delete condition: " + pid)) {
+            var data = { 'conditionId': pid }
+            $.post('DeleteCondition', data,
+            function (data) {
+                if (data == true)
+                    location = location.href;
+                else
+                    alert("Could not delete");
+            });
+        }
+    }
+
+    function OpenCreatePopup() {
+
+        var div = $("#DivToAppendPartialVoew");
+
+        div.load("CreateCondition", function () {
+            div.dialog({
+                modal: true,
+                width: 500,
+                height: 438,
+                title: "Add New condition",
+                resizable: false
+            });
+        });
+    }
+
+</script>
+

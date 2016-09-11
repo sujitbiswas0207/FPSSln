@@ -1,0 +1,607 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<div class="single-page-nav">
+    <ul>
+        <li><a href="#section1"><i class="fa fa-circle"></i></a></li>
+        <li><a href="#section2"><i class="fa fa-circle"></i></a></li>
+        <li><a href="#section3"><i class="fa fa-circle"></i></a></li>
+        <li><a href="#section4"><i class="fa fa-circle"></i></a></li>
+        <li><a href="#section5"><i class="fa fa-circle"></i></a></li>
+        <li><a href="#section6"><i class="fa fa-circle"></i></a></li>
+    </ul>
+</div>
+
+<section class="bannerSection" id="section1">
+    <div class="flexslider" id="flexbanner">
+        <ul class="slides">
+            <li>
+                <img src="~/img/banner.jpg" alt="">
+
+                <div class="bannerCap">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                Welcome to Freight princing Solution
+                            </h1>
+                        </div>
+                        @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                            <div class="col-lg-6 centerPosition">
+                                <a href="~/Quote/QuickQuote" title="" id="btnHomeQQ" class="btn-StandardReverse">Get a Free Quote - Instant Prices from Multiple Carriers</a>
+                            </div>}
+                    </div>
+
+                   
+                    <div class="row">
+                        <div class="col-md-12 margin-top ">
+
+
+                            
+                            @if (!Request.IsAuthenticated)
+                            {
+                                <h2>
+                                    Create free account and get:<br />
+                                    Unlimited free quotes
+                                    Book Shipments
+                                    Reports
+                                    and more!
+
+                                </h2>
+                                <a href="~/Account/Register" id="registerLink" class="btn-primary margin-top">Create FREE account now!</a>}
+                            &nbsp;
+                            <input class="btn-primary" value="Track Your Shipment" type="submit">
+
+                        </div>
+
+                    </div>
+
+
+                    @*<div class="row">
+            <div class="col-md-6"><input type="text" id="txttrack" class="InputForm-Style InputForm-Style-width-100" placeholder="Shipment or pro number" /></div>
+            <div class="col-lg-6 text-align-left"><input class="btn-normal" value="Track->" type="submit"></div>
+        </div>*@
+
+
+
+
+                    
+                </div>
+
+            </li>
+
+            <li>
+                <img src="~/img/banner1.jpg" alt="">
+
+                <div class="bannerCap">
+                   
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                Welcome to Freight princing Solution
+                            </h1>
+                        </div>
+                        @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                            <div class="col-lg-6 centerPosition">
+                                <a href="~/Quote/QuickQuote" title="" id="btnHomeQQ" class="btn-StandardReverse">Get a Free Quote - Instant Prices from Multiple Carriers</a>
+                            </div>}
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12 margin-top ">
+
+
+                            
+                            @if (!Request.IsAuthenticated)
+                            {
+                                <h2>
+                                    Create free account and get:<br />
+                                    Unlimited free quotes
+                                    Book Shipments
+                                    Reports
+                                    and more!
+
+                                </h2>
+                                <a href="~/Account/Register" id="registerLink" class="btn-primary margin-top">Create FREE account now!</a>}
+                            &nbsp;
+                            <input class="btn-primary" value="Track Your Shipment" type="submit">
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div>
+
+            </li>
+
+            <li>
+                <img src="~/img/banner2.jpg" alt="">
+
+                <div class="bannerCap">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                Welcome to Freight princing Solution
+                            </h1>
+                        </div>
+                        @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                            <div class="col-lg-6 centerPosition">
+                                <a href="~/Quote/QuickQuote" title="" id="btnHomeQQ" class="btn-StandardReverse">Get a Free Quote - Instant Prices from Multiple Carriers</a>
+                            </div>}
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12 margin-top ">
+
+
+                            
+                            @if (!Request.IsAuthenticated)
+
+                            {
+                                <h2>
+                                    Create free account and get:<br />
+                                    Unlimited free quotes
+                                    Book Shipments
+                                    Reports
+                                    and more!
+
+                                </h2>
+                                <a href="~/Account/Register" id="registerLink" class="btn-primary margin-top">Create FREE account now!</a>}
+                            &nbsp;
+                            <input class="btn-primary" value="Track Your Shipment" type="submit">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </li>
+
+
+
+
+
+
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+<section class="offerSection" id="section2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 class="transparent animate-waypoint default" data-animation="animated bounceInLeft">what we offer</h1>
+                <h2 class="transparent animate-waypoint default" data-animation="animated bounceInRight">Lorem Ipsum Dummy Content Original Will Goes Here</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="offerBlock clearfix">
+        <div class="offerImg">
+            <img src="~/img/offerimg1.jpg" alt="">
+            <div class="offerOverlay">
+                <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>
+                            <a href="#"><i class="fa fa-ship"></i></a>
+                            <a href="#"><i class="fa fa-plane"></i></a>
+                            <a href="#"><i class="fa fa-truck"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="offerText">
+            <h3 class="transparent animate-waypoint default" data-animation="animated bounceInLeft">Business Solutions</h3>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+            <a href="#" class="btn btn-link">Read more</a>
+        </div>
+    </div>
+
+    <div class="offerBlock clearfix">
+        <div class="offerText">
+            <h3 class="transparent animate-waypoint default" data-animation="animated bounceInRight">Common Shipments</h3>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+            <a href="#" class="btn btn-link">Read more</a>
+        </div>
+        <div class="offerImg">
+            <img src="~/img/offerimg2.jpg" alt="">
+            <div class="offerOverlay">
+                <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>
+                            <a href="#"><i class="fa fa-ship"></i></a>
+                            <a href="#"><i class="fa fa-plane"></i></a>
+                            <a href="#"><i class="fa fa-truck"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="offerBlock clearfix">
+        <div class="offerImg">
+            <img src="~/img/offerimg3.jpg" alt="">
+            <div class="offerOverlay">
+                <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>
+                            <a href="#"><i class="fa fa-ship"></i></a>
+                            <a href="#"><i class="fa fa-plane"></i></a>
+                            <a href="#"><i class="fa fa-truck"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="offerText">
+            <h3 class="transparent animate-waypoint default" data-animation="animated bounceInLeft">technology</h3>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+            <a href="#" class="btn btn-link">Read more</a>
+        </div>
+    </div>
+
+    <div class="offerBlock clearfix">
+        <div class="offerText">
+            <h3 class="transparent animate-waypoint default" data-animation="animated bounceInRight">logistics</h3>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>
+            <a href="#" class="btn btn-link">Read more</a>
+        </div>
+        <div class="offerImg">
+            <img src="~/img/offerimg4.jpg" alt="">
+            <div class="offerOverlay">
+                <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>
+                            <a href="#"><i class="fa fa-ship"></i></a>
+                            <a href="#"><i class="fa fa-plane"></i></a>
+                            <a href="#"><i class="fa fa-truck"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="howItWorkSection text-center" id="section3">
+    <div id="video-container">
+        <video class="video" id='media-video' controls>
+            <source src="media/demo.mp4" type="video/mp4">
+            <source src="media/demo.ogv" type="video/ogg">
+            <source src="media/demo.webm" type="video/webm">
+        </video>
+    </div>
+    <div class="videoContent">
+        <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="transparent animate-waypoint default" data-animation="animated bounceInLeft">how it works</h1>
+                                <h2 class="transparent animate-waypoint default" data-animation="animated bounceInRight">Watch The Video</h2>
+                                <div class="playText"><a id="play-pause-button" onclick='togglePlayPause();'><img src="~/img/play.png" alt=""></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+
+<section class="benefitSection" id="section4">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="transparent animate-waypoint default" data-animation="animated bounceInLeft">Benefits and advantages of using site</h1>
+                <h2 class="transparent animate-waypoint default" data-animation="animated bounceInRight">Lorem Ipsum Dummy Content Original Will Goes Here</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <div class="media">
+                    <a href="#">
+                        <div class="media-left">
+                            <span class="lineIcon"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4>Free Quotes</h4>
+                            <p>With no obligation...</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-sm-4 col-md-4">
+                <div class="media">
+                    <a href="#">
+                        <div class="media-left">
+                            <span class="lineIcon"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4>Save Money </h4>
+                            <p>Competitive rates and volume discounts</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-md-4">
+                <div class="media">
+                    <a href="#">
+                        <div class="media-left">
+                            <span class="lineIcon"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4>Hassle Free shipping</h4>
+                            <p>no more phone calls by numerous carriers</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <div class="media">
+                    <a href="#">
+                        <div class="media-left">
+                            <span class="lineIcon"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4>Online tracking and order entry</h4>
+                            <p>Track your order status anytime, anywhere</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-sm-4 col-md-4">
+                <div class="media">
+                    <a href="#">
+                        <div class="media-left">
+                            <span class="lineIcon"></span>
+                        </div>
+                        <div class="media-body">
+                            <h4>Personalized customer service</h4>
+                            <p>Our logistic specialists will ensure you receive personalised service from the time you book your shipment to the time it delivers.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="serviceSection" id="section5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="transparent animate-waypoint default" data-animation="animated bounceInLeft">our Services</h1>
+                <h2 class="transparent animate-waypoint default" data-animation="animated bounceInRight">What We Gives You</h2>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-sm-3 col-md-3">
+                <div class="serviceBox">
+                    <span class="lineIcon"></span>
+                    <h4>Business Solutions</h4>
+                    <p>
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
+                    </p>
+                    <div><a href="#" class="btn-link">Read more</a></div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-md-3">
+                <div class="serviceBox">
+                    <span class="lineIcon"></span>
+                    <h4>Logistics</h4>
+                    <p>
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
+                    </p>
+                    <div><a href="#" class="btn-link">Read more</a></div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <div class="serviceBox">
+                    <span class="lineIcon"></span>
+                    <h4>Technology</h4>
+                    <p>
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
+                    </p>
+                    <div><a href="#" class="btn-link">Read more</a></div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-md-3">
+                <div class="serviceBox">
+                    <span class="lineIcon"></span>
+                    <h4>Common Shipments</h4>
+                    <p>
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
+                    </p>
+                    <div><a href="#" class="btn-link">Read more</a></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="testSection" id="section6">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="flexslider" id="testimonialSlider">
+                    <ul class="slides">
+                        <li>
+                            <figure><img src="~/img/test-img1.png" alt=""></figure>
+                            <h4>
+                                “When I found Frieght Pricing Solutions and got my first quote I was shocked how much money I could have saved if I had found them sooner.”
+                            </h4>
+                            <h5>— Ben S. - Columbus, OH More testimonials</h5>
+                        </li>
+                        <li>
+                            <figure><img src="~/img/test-img1.png" alt=""></figure>
+                            <h4>
+                                “When I found Frieght Pricing Solutions and got my first quote I was shocked how much money I could have saved if I had found them sooner.”
+                            </h4>
+                            <h5>— Ben S. - Columbus, OH More testimonials</h5>
+                        </li>
+                        <li>
+                            <figure><img src="~/img/test-img1.png" alt=""></figure>
+                            <h4>
+                                “When I found Frieght Pricing Solutions and got my first quote I was shocked how much money I could have saved if I had found them sooner.”
+                            </h4>
+                            <h5>— Ben S. - Columbus, OH More testimonials</h5>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+@*<div class="container">
+    <div class="margin-top-70p"><img src="~/Image/blank-img.png" alt="" /></div>
+    <div class="row">
+        <div class="col-md-6  margin-top">
+            <div class="sectionList">
+                <img src="~/Image/businessSolution.jpg" />
+                <h2>
+                    Business Solution
+                </h2>
+                <ul>
+                    <li>
+                        <a href="#">Small Business</a>
+                    </li>
+                    <li>
+                        <a href="#">Enterprise</a>
+                    </li>
+                    <li>
+                        <a href="#">Government</a>
+
+                    </li>
+                </ul>
+            </div>
+
+            </div>
+
+
+        <div class="col-md-6  margin-top">
+
+            <div class="sectionList">
+                <img src="~/Image/Logistic.png" />
+                <h2>
+                    Logistics
+                </h2>
+                <ul>
+                    <li>
+                        <a href="#">
+                            LTL
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Truckload
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Intermodal
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Supply chain solutions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            International
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>*@
+
+@*<div class="container ">
+                <div class="sectionBorder"><img src="~/Image/blank-img.png" alt="" /></div>
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <div class="footer">
+                            <div class="top">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>|</li>
+                                    <li>
+                                        <a href="#">
+                                            Shipper
+                                        </a>
+                                    </li>
+                                    <li>|</li>
+                                    <li>
+                                        <a href="#">
+                                            Carrier
+                                        </a>
+                                    </li>
+                                    <li>|</li>
+                                    <li><a href="#">About US</a></li>
+                                    <li>|</li>
+                                    <li>
+                                        <a href="#">
+                                            Contact
+                                        </a>
+                                    </li>
+                                    <li>|</li>
+
+                                </ul>
+                            </div>
+                            <div class="bottom">
+                                <p class="textCenter">© Copyrights 2016, Inc. All rights reserved.</p>
+                                <div class="clearFix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@

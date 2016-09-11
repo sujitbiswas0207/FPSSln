@@ -1,0 +1,232 @@
+﻿@model FPS.Models.PaymentInformationModel
+@{
+    ViewBag.Title = "Payment Details";
+}
+
+@using (Html.BeginForm("PaymentDetails", "Quote", FormMethod.Post))
+{
+    <div class="container">
+        <div class="clear" style="height:20px;">&nbsp;</div>
+        <div class="grid_12">
+            <div id="bookHeader" class="booking3">
+                <span class="bookingNumship">
+                    Shipment Id
+                    <span id="lblQuoteid">@ViewBag.ShipmentID</span>
+                </span>
+            </div>
+        </div>
+        <div class="clear" style="height:20px;">&nbsp;</div>        
+       
+        <div class="destinationWrap grid_12">
+            <div class="destination" style="position:relative">
+
+                <span style="position:absolute; left:20px; bottom:20px">
+                    <p style="font-style:italic; padding-bottom:5px">We accept the following cards:</p>
+                    <img src="images2/CClistInstruct.gif" class="CClist">
+                </span>
+
+                <div class="instruct">
+                    <h1>Payment Info</h1>
+
+                    <h2 class="chargesBreakdown">Charges Breakdown</h2>
+                    <div id="smlBrkDwn">
+                        <ul class="breakdown-items-list breakdown-quote">
+                            <li>
+                                <span class="breakdown-item-subtotal">
+                                    <label class="item-title">Freight Charges</label>
+                                    <span class="item-value">@ViewBag.ItemValue</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="breakdown-item-total">
+                                    <label class="item-title">Total</label>
+                                    <span class="item-value">@ViewBag.ItemValue</span>
+                                    @Html.Hidden("ItemValue")
+                                </span>
+                            </li>
+                            <li>
+                                <span class="breakdown-item-total">
+                                    <label class="item-title">Payments</label>
+                                    <span class="item-value">$0.00</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="breakdown-item-total">
+                                    <label class="item-title">Amount Due</label>
+                                    <span class="item-value">@ViewBag.ItemValue</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom:60px; float:left">
+                        <h2 class="chargesBreakdown">Coupon Code</h2>
+                        <p>If you have a coupon code, please enter it below.</p>
+                        <input name="txtCouponCode" id="txtCouponCode" type="text">
+                        <input name="btnApplyCouponCode" value="Apply" id="btnApplyCouponCode" type="submit">
+                    </div>
+                </div>
+
+                <div class="stepFormHolder">
+                    <div class="stepForm">
+                        <div class="PayButton">
+                            <div class="radioWrap">
+                                <input value="0" name="MyGroup" id="rbtnPayOnline" onclick="javascript:animatedcollapse.show('CCboxHolder');" checked="checked" type="radio">
+                            </div>
+                            <h1 class="paymentOption">Pay Now Online</h1>
+                            <p style="display:none">
+                                Choose this option to pay online with a credit card and expedite the processing
+                                of your shipment. &nbsp;
+                            </p>
+                        </div>
+
+                        <div style="" speed="400" fade="1" groupname="PaymentDivs" id="CCboxHolder">
+                            <div id="CCbox">
+                                <ul>
+                                    <li>
+                                    </li>
+                                    <li>
+                                    </li>
+                                    <li class="newCard">
+                                        <div style="" speed="400" fade="1" groupname="CreditCardDivs" id="editCardNew">
+                                            <div class="CCform">
+                                                <div class="CCformHead">
+                                                    <span class="cardInfoHead">Card Information</span> <span class="cardAddyHead">
+                                                        Card Billing Address
+                                                    </span>
+                                                </div>
+                                                <div id="VSDifferentCard" style="color:Red;display:none;">
+
+                                                </div>
+                                                <ul class="cardInfo">
+                                                    <li class="missedFieldRelative">
+                                                        <label>Card Type</label>
+                                                        @Html.DropDownListFor(model => model.PaymentDetail.CardType, ViewData["CardType"] as List<SelectListItem>)
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        <label>Card Number</label>
+                                                        @Html.TextBoxFor(model => model.PaymentDetail.CardNumber)
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        <label>Expiration Date</label>
+                                                        @Html.DropDownListFor(model => model.PaymentDetail.ExDate_Month, ViewData["ExDateMonth"] as List<SelectListItem>, new { style = "width:70px;" })                                                        
+                                                        <span class="phoneSpacer">/</span>
+                                                        @Html.DropDownListFor(model => model.PaymentDetail.ExDate_Year, ViewData["ExDateYear"] as List<SelectListItem>, new { style = "width:70px;" })
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        <label>CVV2 Code</label>
+                                                        @Html.TextBoxFor(model => model.PaymentDetail.CVVCode, new { @maxlength = "4" })
+                                                        <div class="bubbleInfo">
+                                                            <a href="#" id="cvv2" class="trigger" tabindex="100">What's this?</a>
+                                                            <div style="opacity: 0; top: -297px; left: 5px; display: none;" class="popup">
+                                                                <img src="images2/cvv2code.jpg">
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <label>Save Card</label><span class="saveCheckboxHolder"><span class="checkbox"><input id="ckSaveCard_DifferentCard" name="ckSaveCard_DifferentCard" type="checkbox"></span></span><span class="storeCard">
+                                                            Store card in my account
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                                <ul id="ulCardAddress" name="ulCardAddress" class="cardAddy">
+                                                    <li>
+                                                        <span class="checkboxHolder"><input id="ckSameAsAccountAddress_DifferentCard" name="ckSameAsAccountAddress_DifferentCard" checked="checked" onclick="SameAsAccountAddressClick();" type="checkbox"></span><span class="sameAsAccount">
+                                                            Same as account address
+                                                        </span>
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        @Html.LabelFor(model => model.AspNetUserDetail.FirstName)
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.FirstName, new { @class = "form-control datepicker" })
+                                                    </li>
+                                                    <li>
+                                                        @Html.LabelFor(model => model.AspNetUserDetail.LastName)
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.LastName, new { @class = "form-control datepicker" })
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        @Html.LabelFor(model => model.AspNetUserDetail.Company)
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.Company, new { @class = "form-control datepicker" })
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        @Html.LabelFor(model => model.AspNetUserDetail.Address1)
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.Address1, new { @class = "form-control datepicker" })
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        @Html.LabelFor(model => model.AspNetUserDetail.Address2)
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.Address2, new { @class = "form-control datepicker" })
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        @Html.LabelFor(model => model.AspNetUserDetail.City)
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.City, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                                    </li>
+                                                    <li>
+                                                        @Html.LabelFor(model => model.AspNetUserDetail.State)
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.State, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        @Html.LabelFor(model => model.AspNetUserDetail.Zip)
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.Zip, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                                    </li>
+                                                    <li class="last">
+                                                        @Html.LabelFor(model => model.AspNetUserDetail.Country)
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.Country, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                                    </li>
+                                                    <li class="missedFieldRelative">
+                                                        @Html.Label("Phone")
+                                                        @Html.TextBoxFor(model => model.AspNetUserDetail.PhoneNumber, new { @class = "form-control datepicker" })
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="divPayByPhoneTop" style="display:none" class="PayButton PayButtonMargin">
+                            <div class="radioWrap">
+                                <input value="1" name="MyGroup" id="rbtnPayByphone" class="" onclick="javascript:animatedcollapse.show('dvpaybyoffline');" type="radio">
+                            </div>
+                            <h1 class="paymentOption">Pay by Phone</h1>
+                            <p>A helpful FreightCenter agent will call you to arrange payment.</p>
+                        </div>
+                        <div speed="400" fade="1" groupname="PaymentDivs" id="dvpaybyoffline" style="display:none">
+                            <div id="vsPayByPhone" style="color:Red;display:none;">
+
+                            </div>
+                            <div class="column">
+                                <ul>
+                                    <li class="missedFieldRelative">
+                                        <label class="phonePay">Name</label>
+                                        <input name="txtpaybyphoneName" value="sujit biswas" maxlength="50" id="txtpaybyphoneName" tabindex="8" class="txtbox1" style="width:154px;width: 154px" type="text">
+                                    </li>
+                                    <li class="missedFieldRelative">
+                                        <label class="phonePay">Phone Number</label>
+                                        <input name="txtPaybyphonePhone" value="6148438791" id="txtPaybyphonePhone" tabindex="15" class="txtbox1" style="width:89px;" type="text">
+                                        <span class="phoneSpacer">x</span>
+                                        <input name="txtPayByPhoneExt" maxlength="5" size="5" id="txtPayByPhoneExt" tabindex="16" class="extNum" onkeypress="return validateNumber(this, VAL_KEYPRESS);" type="text">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- close destination -->
+        </div>
+
+        <div class="clearFix margin-top"></div>
+        <div class="row">
+            <div class="col-md-8 text-align-right">
+                <a href="#headerHolder">
+                    <input type="submit" class="btn-normal" id="ibtnQuickQuote" style="border:0px;" value="Continue" name="action">
+                    <input type="hidden" name="QuoteID" id="QuoteID" value="@ViewBag.ShipmentID">
+                </a>
+            </div>
+        </div>
+    </div>
+ }
+
+@section Scripts {
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+}

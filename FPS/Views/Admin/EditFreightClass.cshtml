@@ -1,0 +1,50 @@
+﻿@model FPS.DataModel.tblFreightClass
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend class="invisible">Freight Class </legend>
+        <label>@ViewBag.errormsg</label>
+
+        <div class="adminPopupBox">
+            <h3>Edit Freight Class</h3>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.Name, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+           
+            <div class="form-group">
+                @Html.LabelFor(model => model.Value, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.TextBoxFor(model => model.Value, new { @class = "form-control form-control-fps", @readonly = true })
+                @Html.ValidationMessageFor(model => model.Value)
+            </div>
+           
+            <p>
+                <input class="btn-Standard btn-normal-full-with" type="button" value="Update" onclick="UpdateFreightClass()" />
+            </p>
+
+            <div class="btn-StandardReverse btn-normal-full-with-bg">
+                @Html.ActionLink("Close", "AddFreightClass")
+            </div>
+        </div>
+    </fieldset>
+}
+
+
+
+<script type="text/javascript">
+    function UpdateFreightClass() {
+        var cName = $("#Name").val();
+        var id = $("#Value").val();
+        var freightclass = {
+            "Name": cName, "id": id
+        };
+
+        $.post('EditFreightClass', freightclass,
+        function (data) { location = location.href; }, 'json');
+    }
+</script>

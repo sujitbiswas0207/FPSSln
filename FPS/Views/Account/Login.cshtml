@@ -1,0 +1,53 @@
+﻿@using FPS.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<section class="loginSection" id="loginForm">
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="loginBox">
+        <h3>Login with us...</h3>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label displayNone" })
+            
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-fps", placeholder = "Type Username" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label displayNone" })
+            
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-fps", placeholder = "Type Password" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+        @*<div class="checkbox" class="form-group">
+            <label>
+                <input type="checkbox"> Remember Me
+            </label>
+           
+        </div>*@
+        
+        <div class="form-group text-center">
+        @*<input type="submit" class="btn btn-primary" value="Submit">*@
+            <input type="submit" value="Log in" class="btn-Standard btn-normal-full-with" /> 
+        </div>
+        <p>@Html.ActionLink("Forgot your password? Click here", "ForgotPassword")</p>
+        <div class="form-group text-center">
+            <input type="button" value="Register with us" class="btn-StandardReverse btn-normal-full-with-bg" onclick="@("window.location.href='" + @Url.Action("Register", "account") + "'");" />
+        </div>
+
+    </div>
+}
+</section>
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

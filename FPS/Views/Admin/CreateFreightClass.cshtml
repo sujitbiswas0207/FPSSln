@@ -1,0 +1,41 @@
+﻿@model FPS.DataModel.tblFreightClass
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend class="invisible">Freight Class</legend>
+        <label>@ViewBag.errormsg</label>
+
+        <div class="adminPopupBox">
+            <h3>Add Freight Class</h3>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.Name, new { @class = "form-control form-control-fps" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>            
+            <p>
+                <input class="btn-Standard btn-normal-full-with" type="button" value="Create" onclick="SaveFreightClass()" />
+            </p>
+
+            <div>
+                <input type="button" class="btn-StandardReverse btn-normal-full-with-bg" value="Close" onclick="CloseWindow()" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+<script type="text/javascript">
+        function SaveFreightClass() {
+            var cName = $("#Name").val();
+            var FreightClass = { "Name": cName };
+
+            $.post('CreateFreightClass', FreightClass,
+        function (data) { location = location.href; }, 'json');
+    }
+
+    function CloseWindow() {
+        location = location.href;
+    }
+</script>

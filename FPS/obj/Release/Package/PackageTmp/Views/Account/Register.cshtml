@@ -1,0 +1,122 @@
+﻿@model FPS.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+   
+    @Html.ValidationSummary("", new { @class = "field-validation-valid text-danger" })
+
+    <section class="loginSection registerSection">
+        <div class="loginBox">
+            <h3>Register with us...</h3>
+            <p>
+                Please fill up below details and register with your one and only solution for logistics.  <br /><br />
+            </p>
+            <div class="form-group">
+                
+                @Html.TextBoxFor(m => m.Fname, new { @class = "form-control form-control-fps", @placeholder = "First Name" })
+            </div>
+            <div class="form-group">
+                
+                @Html.TextBoxFor(m => m.Lname, new { @class = "form-control form-control-fps", @placeholder = "Last Name" })
+            </div>
+            <div class="form-group">
+                <h4 class="col-md-12 control-label ">Customer type</h4>
+                <div class="col-md-11">
+                    <input name="Ctype" value="1" checked type="radio"><label> Individual</label>
+                    <input name="Ctype" value="2" type="radio"><label> Business</label><br>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control form-control-fps", @placeholder = "Phone" })
+            </div>
+            <div class="form-group">
+                @Html.DropDownList("Country", ViewBag.Countrylist as IEnumerable<SelectListItem>, new { @class = "form-control form-control-fps" })
+            </div>
+            <div class="form-group">
+                
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-fps", @placeholder = "Email" })
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-fps", @placeholder = "Password" })
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control form-control-fps", @placeholder = "Confirm password" })
+            </div>
+            
+
+            <div class="form-group text-center">
+                <input type="submit" class="btn-Standard btn-normal-full-with" value="Register" />
+                @Html.HiddenFor(m => m.Address1, new { @Value = "a" })
+                @Html.HiddenFor(m => m.City, new { @Value = "c" })
+                @Html.HiddenFor(m => m.Zip, new { @Value = "z" })
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+        
+
+  
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@*<div class="sectionBorder"><img src="~/Image/blank-img.png" alt="" /></div>
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="footer">
+            <div class="top">
+                <ul>
+                    <li>
+                        <a href="#">
+                            Home
+                        </a>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a href="#">
+                            Shipper
+                        </a>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a href="#">
+                            Carrier
+                        </a>
+                    </li>
+                    <li>|</li>
+                    <li><a href="#">About US</a></li>
+                    <li>|</li>
+                    <li>
+                        <a href="#">
+                            Contact
+                        </a>
+                    </li>
+                    <li>|</li>
+
+                </ul>
+            </div>
+            <div class="bottom">
+                <p class="textCenter">© Copyrights 2016, Inc. All rights reserved.</p>
+                <div class="clearFix"></div>
+            </div>
+        </div>
+    </div>
+</div>*@

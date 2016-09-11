@@ -1,0 +1,133 @@
+﻿@model List<FPS.DataModel.ShipmentDetail>
+@{
+    ViewBag.Title = "Location Details";
+}
+
+@using (Html.BeginForm("ShipmentDetails", "Quote", FormMethod.Post))
+{
+    <div class="container">
+        <div class="clear" style="height:20px;">&nbsp;</div>
+        <div class="grid_12">
+            <div id="bookHeader" class="booking2">
+                <span class="bookingNumship">
+                    Shipment Id
+                    <span id="lblQuoteid">@ViewBag.ShipmentID</span>
+                </span>
+            </div>
+        </div>
+        <div class="clear" style="height:20px;">&nbsp;</div>
+        <div class="destinationWrap grid_12">
+            <div class="destination">
+                <div class="instruct">
+                    <h1>
+                        Item Details
+                    </h1>
+                    <p>
+                        Please provide a detailed description of the items you’re shipping. Below
+                        are some examples of important details.
+                    </p>
+                    <ul>
+                        <li><span class="arrow">→</span> What exactly is it?</li>
+                        <li><span class="arrow">→</span> How is it packaged?</li>
+                        <li><span class="arrow">→</span> What else should we know?</li>
+                    </ul>
+                </div>
+                <div class="stepFormHolder">
+                    <div class="stepForm">
+                        <div id="itemDetailsWrap">
+                            <table cellspacing="0" border="0" id="dgItemDetails" style="border-collapse:collapse;">
+                                <tbody>
+                                    @{int j = 0;}
+                                    @for (var i = 0; i < Model.Count; i++)
+                                    {
+                                        j++;
+                                        <tr class="singleItem">
+                                            <td>
+                                                <div class="itemHead">
+                                                    <h2>
+                                                        Item
+                                                        <span id="dgItemDetails_ctl02_lblSNO">@i</span>
+                                                        Details
+                                                    </h2>
+                                                    ( Total Packaged Weight:&nbsp;<span id="dgItemDetails_ctl02_lblWeight">1</span>
+                                                    <span id="dgItemDetails_ctl02_lblWeightUnit">lbs</span>
+                                                    .&nbsp;&nbsp;-&nbsp;&nbsp;Class:&nbsp;<span id="dgItemDetails_ctl02_lblClass">70.00</span>
+                                                    &nbsp;)
+                                                </div>
+                                                <div class="itemDesc">
+                                                    @Html.TextAreaFor(model => Model[i].ItemdetailsDesc, new { @rows = 10, @cols = 40 })
+                                                </div>
+                                                <div class="itemKnownDetails">
+                                                    <ul>
+                                                        <li>
+                                                            <label>
+                                                                Packaging
+                                                            </label>
+                                                            @Html.DropDownListFor(model => Model[i].PackagingID, ViewData["PackagingList"] as List<SelectListItem>, new { @class = "inputFormList" })
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                Condition
+                                                            </label>
+                                                            @Html.DropDownListFor(model => Model[i].ItemCondition, ViewData["ItemCondition"] as List<SelectListItem>, new { @class = "inputFormList" })
+                                                        </li>
+                                                        <li class="quantity">
+                                                            <label>
+                                                                Quantity
+                                                            </label>
+                                                            @Html.TextBoxFor(model => Model[i].Quantity, new { @class = "descQuan" })
+                                                        </li>
+                                                        <li class="dimens">
+                                                            <label>
+                                                                Dimensions
+                                                            </label>
+                                                            @Html.TextBoxFor(model => Model[i].Quantity_Length, new { @class = "descQuan" })<label class="lwh">L</label>
+                                                            @Html.TextBoxFor(model => Model[i].Quantity_Width, new { @class = "descQuan" })<label class="lwh">W</label>
+                                                            @Html.TextBoxFor(model => Model[i].Quantity_Height, new { @class = "descQuan" })<label class="lwh">H</label>
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                Commodity Category
+                                                            </label>
+                                                            @Html.DropDownListFor(model => Model[i].Commodity_Category, ViewData["CommodityCategory"] as List<SelectListItem>, new { @class = "inputFormList" })
+                                                        </li>
+                                                        <li>
+                                                            <label>
+                                                                NMFC Code
+                                                            </label>
+                                                            @Html.TextBoxFor(model => Model[i].NMFC_Code)
+                                                            @Html.HiddenFor(model => Model[i].ShipmentId)
+                                                            @*@Html.HiddenFor(model => Model[i].QuoteID)*@
+                                                            <input type="hidden" name="QuoteID" id="QuoteID" value="@ViewBag.ShipmentID">
+                                                            <input type="hidden" name="dgItemDetails$ctl02$hfVolume" id="dgItemDetails_ctl02_hfVolume" value="0">
+                                                            <input type="hidden" name="dgItemDetails$ctl02$hfVolumeUnit" id="dgItemDetails_ctl02_hfVolumeUnit" value="F">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr style="height:10px;"><td>&nbsp;</td></tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearFix margin-top"></div>
+        <div class="row">
+            <div class="col-md-8 text-align-right">
+                <a href="#headerHolder">
+                    <input type="submit" class="btn-normal" id="ibtnQuickQuote" style="border:0px;" value="Continue" name="action">
+                </a>
+            </div>
+        </div>
+    </div>
+ }
+
+@section Scripts {
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+}

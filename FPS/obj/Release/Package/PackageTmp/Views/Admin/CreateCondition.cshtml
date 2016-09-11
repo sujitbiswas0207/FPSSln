@@ -1,0 +1,42 @@
+﻿@model FPS.DataModel.tblCondition
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend class="invisible">Condition</legend>
+        <label>@ViewBag.errormsg</label>
+        <div class="adminPopupBox">
+            <h3>Add Condition</h3>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.Name, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+           
+            <p>
+                <input class="btn-Standard btn-normal-full-with" type="button" value="Create" onclick="SaveCondition()" />
+            </p>
+
+            <div>
+                <input type="button" class="btn-StandardReverse btn-normal-full-with-bg" value="Close" onclick="CloseWindow()" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+<script type="text/javascript">
+    function SaveCondition() {
+        var cName = $("#Name").val();
+
+        var Condition = { "Name": cName };
+
+        $.post('CreateCondition', Condition,
+        function (data) {location = location.href; }, 'json');
+    }
+
+    function CloseWindow() {
+        location = location.href;
+    }
+</script>

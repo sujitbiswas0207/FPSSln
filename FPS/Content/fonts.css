@@ -1,0 +1,85 @@
+@font-face {
+	font-family: 'gothambold';
+	src: url('../fonts/gothambold1.eot');
+	src: local('gothambold1'), 
+	url('../fonts/gothambold1.woff') format('woff'), 
+	url('../fonts/gothambold1.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'GothamBook';
+	src: url('../fonts/GothamBook.eot');
+	src: local('GothamBook'), url('../fonts/GothamBook.woff') format('woff'), url('../fonts/GothamBook.ttf') format('truetype');
+}
+@font-face {
+ font-family: GothamThin;
+ src: url("../fonts/Gotham-Thin.eot");
+ src: url("../fonts/Gotham-Thin.ttf");
+ src: url("../fonts/Gotham-Thin.woff");
+}
+@font-face {
+    font-family: 'DINProRegular';
+    src: url('../fonts/dinpro-regular-webfont.eot');
+    src: url('../fonts/dinpro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/dinpro-regular-webfont.woff') format('woff'),
+         url('../fonts/dinpro-regular-webfont.ttf') format('truetype'),
+         url('../fonts/dinpro-regular-webfont.svg#DINProRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'HelveNueThin';
+    src: url('../fonts/HelveNueThin.eot');
+    src: url('../fonts/HelveNueThin.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/HelveNueThin.woff') format('woff'),
+         url('../fonts/HelveNueThin.ttf') format('truetype'),
+         url('../fonts/HelveNueThin.svg#HelveNueThin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+ font-variant:normal;
+
+}
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('../fonts/opensans-bold-webfont.eot');
+    src: url('../fonts/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensans-bold-webfont.woff2') format('woff2'),
+         url('../fonts/opensans-bold-webfont.woff') format('woff'),
+         url('../fonts/opensans-bold-webfont.ttf') format('truetype'),
+         url('../fonts/opensans-bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+ font-family: helveticaConRegular;
+ src: url("../fonts/helveticaConRegular.eot");
+ src: url("../fonts/helveticaConRegular.ttf");
+  src: url("../fonts/helveticaConRegular.woff")
+}
+@font-face {
+ font-family: helveticaConBold;
+ src: url("../fonts/helveticaConBold.eot");
+ src: url("../fonts/helveticaConBold.ttf");
+ src: url("../fonts/helveticaConBold.woff")
+}
+
+@font-face {
+ font-family: helveticaBold;
+ src: url("../fonts/helveticaBold.eot");
+ src: url("../fonts/helveticaBold.ttf");
+  src: url("../fonts/helveticaBold.woff")  
+}
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('../fonts/OpenSans-Regular-webfont.eot');
+    src: url('../fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('../fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    
+
+}

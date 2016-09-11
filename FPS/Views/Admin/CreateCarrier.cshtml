@@ -1,0 +1,66 @@
+﻿@model FPS.DataModel.CarriersDetail
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+      
+        <div class="adminPopupBox">
+            <h3>Add Carrier</h3>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CarriersDetails, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.CarriersDetails, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.CarriersDetails)
+            </div>
+           
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiscountedPrice, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.DiscountedPrice, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.DiscountedPrice)
+            </div>
+            
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TransitTime, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.TransitTime, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.TransitTime)
+            </div>
+           
+            <div class="form-group">
+                @Html.LabelFor(model => model.CarriersLogo, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.CarriersLogo, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.CarriersLogo)
+            </div>      
+
+            <p>
+                <input type="button" class="btn-Standard btn-normal-full-with" value="Create" onclick="SaveCarriers()" />
+            </p>
+            <div>
+                <input type="button" class="btn-StandardReverse btn-normal-full-with-bg" value="Close" onclick="CloseWindow()" />
+            </div>
+        </div>
+</fieldset>
+}
+
+<script type="text/javascript">
+    function SaveCarriers() {
+        var cdetails = $("#CarriersDetails").val();
+        var dprice = $("#DiscountedPrice").val();
+        var ttime = $("#TransitTime").val();
+        var clogo = $("#CarriersLogo").val();
+
+        var Carriers = {
+            "CarriersDetails": cdetails, "DiscountedPrice": dprice,
+            "TransitTime": ttime, "CarriersLogo": clogo
+        };
+
+        $.post('CreateCarrier', Carriers,
+        function (data) { location = location.href; }, 'json');
+
+    }
+
+    function CloseWindow() {
+       location = location.href;
+    }
+</script>

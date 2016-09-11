@@ -1,0 +1,298 @@
+﻿
+@model FPS.DataModel.TruckloadQuoteDetail
+@{
+    ViewBag.Title = "Quick Quote";
+}
+<link rel="stylesheet" href="~/css/jquery-ui.css.css">
+
+@using (Html.BeginForm("truckloadquote", "Quote", FormMethod.Post, new { role = "form" }))
+{
+        @*<div class="grid_12">
+            <div id="standardHeader">
+                <h1>
+                    Quick Quote
+                </h1>
+                <p>
+                    Fill out the form below to receive your instant rates
+                </p>
+            </div>
+        </div>*@
+
+        <input id="hideFreightClassValue" name="hideFreightClassValue" type="hidden" value="false">
+
+    <div id="quotePage" class="container">
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ScriptManager1', 'frm', [], [], [], 90, '');
+//]]>
+        </script>
+        <div class="clear">&nbsp;</div>
+        <div class="row margin-bottom">
+            <div class="col-md-12">
+                <h2 class="borderBottom"> What Are You Shipping? </h2>
+            </div>
+        </div>
+
+        <div class="row margin-bottom">
+            <div class="col-md-4">
+
+                <div class="formList">
+                    <ul>
+                        <li class="border-left">
+                            <input type="radio" name="QuickQuoteType" value="1" onClick="location.href='QuickQuote';" />
+                            <img id="" class="accessorialTip" src="~/Image/icon2.png" style="border-width:0px;">  <label for="dlstExtraS_ctl09_chkAcc">Less-than-Truckload (LTL) Shipment</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="formList">
+                    <ul>
+                        <li class="border-left">
+                            <input id="rYes" type="radio" name="QuickQuoteType" value="2" checked>
+                            <img id="" class="accessorialTip" src="~/Image/icon5.png" style="border-width:0px;">  <label for="dlstExtraS_ctl09_chkAcc">Full Truckload (TL) Shipment</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="formList">
+                    <ul>
+                        <li>
+                            <input type="radio" name="QuickQuoteType" value="3" />
+                            <img id="" class="accessorialTip" src="~/Image/icon1.png" style="border-width:0px;">  <label for="dlstExtraS_ctl09_chkAcc">Motorcycle</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="quoteSectionType">
+            <div class="row margin-bottom spclROW">
+                <div class="col-md-12">
+                    <h2 class="borderBottom"> Shipment Type </h2>
+                    <a href="#" class="tt shiptype info">
+                        <img src="~/Image/qtnmark.gif">
+                        <span class="tooltip">
+                            <span class="top">More Info</span><span class="middle">
+                                LTL (Less-Than-Truckload)
+                                shipping handles freight shipments ranging from 100 lbs to 20,000 lbs. LTL Shipping
+                                is ideal for most commercial &amp; residential freight shipments. For much larger shipments,
+                                select our Truckload option.
+                            </span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="shipmentType icons" style="display:none;">
+                        <h3>Shipping Mode:</h3>
+
+                        <input type="radio" name="mode" id="rLTL" onclick="window.location.href='/quickquote.aspx'">
+
+                        <label for="rLTL" class="qqIconLabel">
+                            <img src="../images2/qqIconLtl.jpg" class="ltl">Less-than-Truckload (LTL)
+                        </label>
+
+                        <input type="radio" name="mode" id="rTL" checked="">
+                        <label for="rTL" class="qqIconLabel">
+                            <img src="../images2/qqIconTl.jpg" class="tl">Full Truckload
+                        </label>
+
+
+                        <input type="radio" name="mode" id="rMotorcycle">
+                        <label for="rMotorcycle">
+                            <img src="../images2/qqIconMc.jpg" class="mc">Motorcycle
+                        </label>
+
+                    </div>
+                    <div class="shipmentType tlIcons">
+                        <span id="rfvTruckType" class="truckTypeRequired" style="color:Red;display:none;">Truck Type Required</span>
+                        <h3 class="tType">Truck Type: </h3>
+                        <table id="rblTruckType" border="0">
+                            <tbody>
+                                <tr>
+                                    <td><input id="rblTruckType_0" type="radio" name="rblTruckType" value="1"><label for="rblTruckType_0">Dry Van</label></td>
+                                    <td><input id="rblTruckType_1" type="radio" name="rblTruckType" value="2"><label for="rblTruckType_1">Flat Bed</label></td>
+                                    <td><input id="rblTruckType_2" type="radio" name="rblTruckType" value="3"><label for="rblTruckType_2">Refrigerated</label></td>
+                                    <td><input id="rblTruckType_3" type="radio" name="rblTruckType" value="4"><label for="rblTruckType_3">RGN</label></td>
+                                    <td><input id="rblTruckType_4" type="radio" name="rblTruckType" value="5"><label for="rblTruckType_4">Step Deck</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+            <div id="locations" class="row margin-bottom">
+                <div class="col-md-6">
+                    <h2 class="borderBottom"></h2>
+                    <div  class="formList">
+                        <h3>Ship from location</h3>
+                        <div id="from">
+                            <ul>
+                                <li>
+                                    <div class="leftSec">
+                                        <span id="RegularExpressionValidator1" class="qqBadZip" style="color:Red;display:none;">Postal code required in format "12345" or "A1B 2C3"</span>
+                                        <label>Zip / Postal Code &nbsp;(<a onclick="OpenZipLookup(1);" class="thickbox">Lookup</a>)</label>
+                                    </div>
+                                    <div class="rightSec">
+                                        @Html.TextBoxFor(m => m.StartLocationZip, new { @class = "inputFormList" })
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="leftSec">
+                                        <label>Location Type</label>
+                                    </div>
+                                    <div class="rightSec">
+                                        @Html.DropDownList("StartLocationType", ViewData["LocationType"] as List<SelectListItem>, new { @class = "inputFormList" })
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="leftSec">
+                                        <label>Ready For Pickup By</label>
+                                    </div>
+                                    <div class="rightSec" id="pickupDateHolder">
+                                        
+                                            @Html.TextBoxFor(m => m.PickupTime, new { @class = "inputFormList" })
+                                     
+                                    </div>
+                                </li>
+                            </ul>
+                            @*<h2><span>Ship From Location</span></h2>*@
+                            
+                            <div class="locationInfo" style="display: inline;">
+                               
+                               
+
+                                
+                                @*<select name="ddlLoadingFacility" id="ddlLoadingFacility" tabindex="2" class="qqLoadFacility">
+                    <option value="2">Business</option>
+                    <option value="4">Freight Carrier Terminal</option>
+                    <option value="1">Residential or Non-commercial</option>
+                </select>*@
+                                
+                                
+                                
+                            </div>
+                            <div class="accessorials">&nbsp;</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <h2 class="borderBottom"></h2>
+                    <div class="formList">
+                        <h3>Ship to location</h3>
+                        <div id="to">
+                            <ul>
+                                <li>
+                                    <div class="leftSec">
+                                        <span id="RegularExpressionValidator2" class="qqBadZip" style="color:Red;display:none;">Postal code required in format "12345" or "A1B 2C3"</span>
+                                        <label>Zip / Postal Code &nbsp;(<a onclick="OpenZipLookup(2);" class="thickbox">Lookup</a>)</label>
+                                    </div>
+                                    <div class="rightSec">
+                                        @Html.TextBoxFor(m => m.EndLocationZip, new { @class = "inputFormList" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="leftSec">
+                                        <label>Location Type</label>
+                                    </div>
+                                    <div class="rightSec">
+                                        @Html.DropDownList("EndLocationType", ViewData["LocationType"] as List<SelectListItem>, new { @class = "inputFormList" })
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="leftSec">
+                                        <label>WEIGHT (LBS)</label>
+                                    </div>
+                                    <div class="rightSec" id="pickupDateHolder">
+                                        @Html.TextBoxFor(m => m.Weight, new { @class = "inputFormList" })
+                                    </div>
+                                </li>
+                            </ul>
+
+
+
+                            @*<h2><span>Ship To Location</span></h2>*@
+                            
+                            @*<div class="locationInfo">
+                                
+                               
+
+                                
+                                <select name="ddlUnloadingFacility" id="ddlUnloadingFacility" tabindex="5" class="qqLoadFacility">
+                    <option value="2">Business</option>
+                    <option value="4">Freight Carrier Terminal</option>
+                    <option value="1">Residential or Non-commercial</option>
+                </select>
+                                
+                                
+                                <div >
+                                   
+                                </div>
+                            </div>*@
+                            <div class="accessorials">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+        <div class="col-md-12 margin-bottom spclLessPAdding">
+            <h2 class="borderBottom"></h2>
+            <div class="text-align-right" id="buttons">
+                <div class="qqHelp">Help? Call <span class="skype_c2c_print_container notranslate">1-800-716-7608</span><span id="skype_c2c_container" class="skype_c2c_container notranslate" dir="ltr" tabindex="-1" onmouseover="SkypeClick2Call.MenuInjectionHandler.showMenu(this, event)" onmouseout="SkypeClick2Call.MenuInjectionHandler.hideMenu(this, event)" onclick="SkypeClick2Call.MenuInjectionHandler.makeCall(this, event)" data-numbertocall="+18007167608" data-numbertype="tollfree" data-isfreecall="true" data-isrtl="false" data-ismobile="false"><span class="skype_c2c_highlighting_inactive_common" dir="ltr" skypeaction="skype_dropdown"><span class="skype_c2c_textarea_span" id="free_num_ui"><img width="0" height="0" class="skype_c2c_logo_img" src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/call_skype_logo.png"><span class="skype_c2c_text_span">1-800-716-7608</span><span class="skype_c2c_free_text_span"> FREE</span></span></span></span></div>
+                <input type="submit" value="Continue >" class="FormButtonResetSearchPanel" name="action">
+            </div>
+        </div>
+
+        
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        @*<div class="destinationWrap grid_12">
+            <div class="destination">
+               
+                <div class="clear">&nbsp;</div>
+                
+                
+                
+                <div >
+                    <span class="locationsInner">
+                        
+                        
+                    </span>
+                </div>
+
+            </div>
+        </div>*@
+
+        }

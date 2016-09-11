@@ -1,0 +1,115 @@
+﻿
+@model FPS.Models.QuoteResultModels
+@{
+    ViewBag.Title = "Quote Result";
+}
+
+<link rel="stylesheet" href="~/css/jquery-ui.css.css">
+
+
+@using (Html.BeginForm("QuoteResult", "Quote", FormMethod.Post, new { role = "form" }))
+{
+    <div class="container">
+        <div class="clear" style="height:20px;">&nbsp;</div>
+        <input id="hideFreightClassValue" name="hideFreightClassValue" type="hidden" value="false">
+        <div class="row margin-bottom">
+            <div class="clear" style="height:20px;">&nbsp;</div>
+            <div class="col-md-12">
+
+                <div class="QuickQuoteTable">
+                    <div id="standardHeaderBottomFlush" width="100%" class="borderBottom">
+                        <h1>
+                            <span id="lblResultsHeader">Quote Results</span>
+                        </h1>
+                        <p class="quoteTime">
+                            <span id="lblheading">Thursday, April 21, 2016 10:53 AM</span>
+                        </p>
+                    </div>
+                    <div id="shipment">
+                        <h3 class="margin-bottom">
+                            Shipment Criteria
+                        </h3>
+
+                        <div id="shipmentCriteria">
+                            <div class="shipCrit">
+                                <label>
+                                    Start Location:
+                                </label>
+                                @Html.TextAreaFor(model => model.startLocation, new { @readonly = "readonly", style = "width: 250px; background-color:transparent" })
+                            </div>
+
+                            <div class="shipCrit">
+                                <label>
+                                    Included at start:
+                                </label>
+                                @Html.TextAreaFor(model => model.includedstart, new { @readonly = "readonly", style = "width: 250px; background-color:transparent" })
+                            </div>
+
+                            <div class="shipCrit">
+                                <label>
+                                    End Location:
+                                </label>
+                                @Html.TextAreaFor(model => model.endLocation, new { @readonly = "readonly", style = "width: 250px; background-color:transparent" })
+                            </div>
+
+                            <div class="shipCrit">
+                                <label>
+                                    Included at end:
+                                </label>
+                                @Html.TextAreaFor(model => model.includedend, new { @readonly = "readonly", style = "width: 250px; background-color:transparent" })
+                            </div>
+
+                            <div class="shipCrit">
+                                <label>
+                                    Item info:
+                                </label>
+                                @Html.TextAreaFor(model => model.itemInfo, new { @readonly = "readonly", style = "width: 250px; background-color:transparent" })
+                            </div>
+                        </div>
+                    </div>
+                    <div id="warmFuzzy">
+                        <h2>
+                            Book Your Service Online Now!
+                        </h2>
+                        <p>
+                            You are now ready to schedule your shipment. Booking online is quick and easy. Your
+                            shipment will be assigned to a FreightCenter.com Agent to check for accuracy before
+                            it’s completed.
+                        </p>
+                    </div>
+                    <div id="QuickQuote" class="QuickQuoteTable">
+                        @{
+                            if (!ReferenceEquals(Model.CarriersDetails, null))
+                            {
+                                var grid = new WebGrid(Model.CarriersDetails, canSort: false);
+                                
+                                @grid.GetHtml(
+                                               tableStyle: "gridtable",
+                                                  headerStyle: "itemHeadRow",
+                                                  alternatingRowStyle: "CommodityRow1",
+                                                columns: grid.Columns(
+                                                    grid.Column("Carriers Details", format:@<text><img src="@Url.Content(item.CarriersLogo)" alt="Image " width="70" height="35" /> @item.CarriersDetails</text>),
+                                                    grid.Column("Transit Time", format:@<text>@item.TransitTime</text>),
+                                                    grid.Column("Total Discounted Price", format:@<text>$@item.DiscountedPrice</text>),
+                                                    grid.Column(header: "", format: (item) => Html.ActionLink("Quote", "QuickQuoteContinue", new { id = item.ID }, new { @class = "FormButtonResetSearchPanel" }))
+                                                )
+                                            )
+                            }
+                        }
+
+
+
+                    </div>
+                </div>
+                <!--<span class="classInfo">(Don't know your freight class? Call 1-800-716-7608)</span>-->
+
+            </div>
+        </div>
+    </div>
+                            }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+}

@@ -1,0 +1,100 @@
+﻿@model List<FPS.DataModel.tblCommodityCategory>
+@{
+    ViewBag.Title = "Add comodity category";
+
+    <style type="text/css">
+        .grid {
+            width: 100%;
+        }
+    </style>
+}
+
+<section class="innerBanner"><img src="~/img/admin-banner.jpg" alt=""></section>
+
+<section class="innerContent">
+    <div class="row rowSPCLInnerpages">
+        <h3 class="gridaboveH3">Comodity Category List</h3>
+        <div class="addBtnCont">
+            <input type="button" value="Add New Comodity Category" class="btn-StandardReverse" onclick="OpenCreatePopup()" />
+            
+        </div>
+
+
+       
+        <div class="gridOuterDiv">
+            @{
+        WebGrid grid = new WebGrid(Model);
+        @grid.GetHtml(
+         tableStyle: "gridtable",
+         fillEmptyRows: false,
+         headerStyle: "gvHeading",
+         alternatingRowStyle: "gvAlternateRow",
+         rowStyle: "gvRow",
+         footerStyle: "gvFooter",
+
+         mode: WebGridPagerModes.All,
+         firstText: "<< First",
+         previousText: "< Prev",
+         nextText: "Next >",
+         lastText: "Last >>",
+         columns: new[] {
+         grid.Column("Id",header: "ID",canSort:false),
+         grid.Column("Name",header: "Name",canSort:false),
+         grid.Column("Id", header: "Action", canSort: false,
+
+         format: @<text>
+            @Html.Raw("<img src='../img/blankImg.png' class='editGrid' title='Edit' onclick='EditCategory("+ item.id + ")'  />")
+            @Html.Raw("<img src='../img/blankImg.png' class='delGrid' title='Delete' onclick='DeleteCategory("+ item.id +")'  />")
+        </text>
+        )
+     })
+            }
+        </div>
+        <div id="DivToAppendPartialVoew"></div>
+    </div>
+
+</section>
+
+<script type="text/javascript">
+            function EditCategory(cid) {
+        var ph = $("#DivToAppendPartialVoew");
+        ph.load("EditCommodityCategory?comodityid=" + cid, function () {
+            ph.dialog({
+                modal: true,
+                width: 500,
+                height: 438,
+                title: "Edit Comodity Category",
+                resizable: false
+            });
+        });
+    }
+
+            function DeleteCategory(cid) {
+        if (confirm("Do you want to delete comodity category: " + cid)) {
+            var data = { 'comodityId': cid }
+            $.post('DeleteCommodityCategory', data,
+            function (data) {
+                if (data == true)
+                    location = location.href;
+                else
+                    alert("Could not delete");
+            });
+        }
+    }
+
+    function OpenCreatePopup() {
+
+        var div = $("#DivToAppendPartialVoew");
+
+        div.load("CreateCommodityCategory", function () {
+            div.dialog({
+                modal: true,
+                width: 500,
+                height: 438,
+                title: "Add New Carriers",
+                resizable: false
+            });
+        });
+    }
+
+</script>

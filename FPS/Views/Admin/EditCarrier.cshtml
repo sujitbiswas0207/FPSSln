@@ -1,0 +1,69 @@
+﻿@model FPS.DataModel.CarriersDetail
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend class="invisible">Carrier</legend>
+        <label>@ViewBag.errormsg</label>
+        @Html.Hidden("hdnID",Model.Id)
+
+
+        <div class="adminPopupBox">
+            <h3>Edit Carrier</h3>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CarriersDetails, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.CarriersDetails, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.CarriersDetails)
+            </div>
+           
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiscountedPrice, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.DiscountedPrice, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.DiscountedPrice)
+            </div>
+           
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TransitTime, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.TransitTime, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.TransitTime)
+            </div>
+           
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CarriersLogo, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.CarriersLogo, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.CarriersLogo)
+            </div>
+           
+            <p>
+                <input type="button" class="btn-Standard btn-normal-full-with" value="Update" onclick="UpdateProduct()" />
+            </p>
+
+            <div class="btn-StandardReverse btn-normal-full-with-bg">
+                @Html.ActionLink("Close", "Addcarriers")
+            </div>
+        </div>
+    </fieldset>
+}
+
+
+
+<script type="text/javascript">
+    function UpdateProduct() {
+        var cdetails = $("#CarriersDetails").val();
+        var dprice = $("#DiscountedPrice").val();
+        var ttime = $("#TransitTime").val();
+        var clogo = $("#CarriersLogo").val();
+        var id = $("#hdnID").val();
+        var Carriers = {
+            "CarriersDetails": cdetails, "DiscountedPrice": dprice,
+            "TransitTime": ttime, "CarriersLogo": clogo, "id": id
+        };
+
+        $.post('EditCarrier', Carriers,
+        function (data) { location = location.href; }, 'json');
+    }
+</script>

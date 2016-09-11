@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Truckload Review";
+}
+<link rel="stylesheet" href="~/css/jquery-ui.css.css">
+
+ <div class="box">
+    <div class="row">
+        <div class="col-md-12 text-center" style="margin: 0 0 5px 0">
+            <h3 style="margin-top: 0px;  text-transform:uppercase;"><b>Truckload Quote Request</b></h3>
+        </div>
+    </div>
+    <div class="well">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                <b style="font-size: 1.15em;">SHIPMENT CRITERIA</b><span class="pull-right"><small>Results in map are final destination only</small></span>
+                <hr>
+                
+                <div class="shipment-info">
+                    <div class="form-group">
+                        <span class="col-md-3 text-right">Start Location:</span>
+                        <div class="col-md-9">
+                            <b>
+                               @ViewBag.StartLocationZipBag
+                            </b>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span class="col-md-3 text-right">End Location:</span>
+                        <div class="col-md-9">
+                            <b>
+                                @ViewBag.EndLocationZipbag
+                            </b>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span class="col-md-3 text-right">Item info:</span>
+                        <div class="col-md-9">
+                            <b>Weight:&nbsp;@ViewBag.Weightbag</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding: 0 15px 0 25px;">
+                <b style="font-size: 1.15em;" class="pull-left">Your Truckload Quote Request Has Been Received</b>
+                <hr>
+                <p class="text-left">
+                    A dedicated Truckload Account Manager is currently researching your load specifications to find you the best rate, coverage and options. You will be contacted shortly with information regarding your truckload request.
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    For immediate assistance, please call <a href="tel:800-716-7882"><i class="fa fa-phone"></i>&nbsp;800-716-7882</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+       

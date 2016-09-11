@@ -1,0 +1,101 @@
+﻿@model List<FPS.DataModel.tblFreightClass>
+@{
+    ViewBag.Title = "Add Freight Class";
+
+    <style type="text/css">
+        .grid {
+            width: 100%;
+        }
+    </style>
+}
+
+<section class="innerBanner"><img src="~/img/admin-banner.jpg" alt=""></section>
+<section class="innerContent">
+    <div class="row rowSPCLInnerpages">
+        <h3 class="gridaboveH3">Freight Class List</h3>
+        <div class="addBtnCont">
+            <input type="button" class="btn-StandardReverse" value="Add New Freight Class" onclick="OpenCreatePopup()" />
+            
+
+        </div>
+
+       
+        <div class="gridOuterDiv">
+            @{
+                WebGrid grid = new WebGrid(Model);
+    @grid.GetHtml(
+         tableStyle: "gridtable",
+         fillEmptyRows: false,
+         headerStyle: "gvHeading",
+         alternatingRowStyle: "gvAlternateRow",
+         rowStyle: "gvRow",
+         footerStyle: "gvFooter",
+
+         mode: WebGridPagerModes.All,
+         firstText: "<< First",
+         previousText: "< Prev",
+         nextText: "Next >",
+         lastText: "Last >>",
+         columns: new[] {
+         grid.Column("Id",header: "ID",canSort:false),
+         grid.Column("Name",header: "Name",canSort:false),
+         grid.Column("Id", header: "Action", canSort: false,
+
+         format: @<text>
+        @Html.Raw("<img src='../img/blankImg.png' class='editGrid' title='Edit' onclick='EditFreightClass("+ item.id + ")'  />")
+        @Html.Raw("<img src='../img/blankImg.png' class='delGrid' title='Delete' onclick='DeleteFreightClass("+ item.id +")'  />")
+        </text>
+        )
+     })
+            }
+        </div>
+        <div id="DivToAppendPartialVoew"></div>
+
+
+
+    </div>
+</section>
+
+<script type="text/javascript">
+    function EditFreightClass(fcid) {
+        var ph = $("#DivToAppendPartialVoew");
+        ph.load("EditFreightClass?freightclassid=" + fcid, function () {
+            ph.dialog({
+                modal: true,
+                width: 500,
+                height: 438,
+                title: "Edit Freight Class",
+                resizable: false
+            });
+        });
+    }
+
+    function DeleteFreightClass(fcid) {
+        if (confirm("Do you want to delete FreightClass: " + fcid)) {
+            var data = { 'freightclassId': fcid }
+            $.post('DeleteFreightClass', data,
+            function (data) {
+                if (data == true)
+                    location = location.href;
+                else
+                    alert("Could not delete");
+            });
+        }
+    }
+
+    function OpenCreatePopup() {
+
+        var div = $("#DivToAppendPartialVoew");
+
+        div.load("CreateFreightClass", function () {
+            div.dialog({
+                modal: true,
+                width: 500,
+                height: 438,
+                title: "Add New Freight Class",
+                resizable: false
+            });
+        });
+    }
+
+</script>

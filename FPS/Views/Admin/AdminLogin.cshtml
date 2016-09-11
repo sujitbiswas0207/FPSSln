@@ -1,0 +1,55 @@
+﻿@using FPS.Models
+@model AdminLoginViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AdminLogin", "Admin", FormMethod.Post))
+{
+
+
+    <section class="loginSection adminloginSection" id="loginForm">
+
+        <div class="loginBox">
+            <h3>Admin Login</h3>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label displayNone" })
+
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control form-control-fps", placeholder = "Type Username" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label displayNone" })
+
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-fps", placeholder = "Type Password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                
+
+                
+            </div>
+          
+
+            <div class="form-group text-center">
+                @*<input type="submit" class="btn btn-primary" value="Submit">*@
+              
+                <input type="submit" class="btn-Standard btn-normal-full-with" id="ibtnQuickQuote" style="border:0px;" value="Continue" name="action">
+            </div>
+            
+
+        </div>
+
+
+
+
+    </section>
+
+
+
+
+
+
+        
+        }

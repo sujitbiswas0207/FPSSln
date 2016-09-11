@@ -1,0 +1,1081 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24BA12B9-7888-4E32-9437-B4009B8FF4FB}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FPS</RootNamespace>
+    <AssemblyName>FPS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.3\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.1.2.3\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.1.2.3\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.1.2.3\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=1.2.3.246, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.1.2.3\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\CacheManager.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="DataModel\AspNetRole.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\AspNetUser.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\AspNetUserClaim.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\AspNetUserLogin.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\AspNetUserRole.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuoteController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataModel\CarriersDetail.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\C__MigrationHistory.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\FPSDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPSDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\FPSDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\FPSDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FPSDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\ItemCollectionAddress.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\ItemDeliveryAddress.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\ItemDropoffDetail.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\ItemPickupDetail.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\PaymentsDetail.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\ShipmentDetail.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\tblCommodityCategory.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\tblCondition.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\tblFreightClass.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\tblPackaging.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\TruckloadQuoteDetail.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\User.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\ItemDetail.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603051055596_InitialCreate.cs" />
+    <Compile Include="Migrations\201603051055596_InitialCreate.Designer.cs">
+      <DependentUpon>201603051055596_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603300544316_InitialMigrations.cs" />
+    <Compile Include="Migrations\201603300544316_InitialMigrations.Designer.cs">
+      <DependentUpon>201603300544316_InitialMigrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\PaymentInformationModels.cs" />
+    <Compile Include="Models\QuoteResultModels.cs" />
+    <Compile Include="Models\PickupDropoffModels.cs" />
+    <Compile Include="Models\QuoteViewModels.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataModel\QuickQuoteDetail.cs">
+      <DependentUpon>FPSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\animation.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\flexslider.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\fonts.css" />
+    <Content Include="Content\page-scroll.css" />
+    <Content Include="Content\simple-line-icons.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\style22.css" />
+    <Content Include="Content\stylesheet.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="DataModel\FPSDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPSDataModel.edmx</DependentUpon>
+      <LastGenOutput>FPSDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataModel\FPSDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FPSDataModel.edmx</DependentUpon>
+      <LastGenOutput>FPSDataModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="fonts\dinpro-regular-webfont.eot" />
+    <Content Include="fonts\dinpro-regular-webfont.svg" />
+    <Content Include="fonts\dinpro-regular-webfont.ttf" />
+    <Content Include="fonts\dinpro-regular-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\Gotham-Thin.eot" />
+    <Content Include="fonts\Gotham-Thin.ttf" />
+    <Content Include="fonts\Gotham-Thin.woff" />
+    <Content Include="fonts\gothambold1.eot" />
+    <Content Include="fonts\gothambold1.ttf" />
+    <Content Include="fonts\gothambold1.woff" />
+    <Content Include="fonts\GothamBook.eot" />
+    <Content Include="fonts\GothamBook.ttf" />
+    <Content Include="fonts\GothamBook.woff" />
+    <Content Include="fonts\Simple-Line-Icons.dev.svg" />
+    <Content Include="fonts\Simple-Line-Icons.eot" />
+    <Content Include="fonts\Simple-Line-Icons.svg" />
+    <Content Include="fonts\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\Simple-Line-Icons.woff" />
+    <Content Include="fonts\sourcesanspro-bold-demo.html" />
+    <Content Include="fonts\sourcesanspro-bold-webfont.eot" />
+    <Content Include="fonts\sourcesanspro-bold-webfont.svg" />
+    <Content Include="fonts\sourcesanspro-bold-webfont.ttf" />
+    <Content Include="fonts\sourcesanspro-bold-webfont.woff" />
+    <Content Include="fonts\sourcesanspro-bold-webfont.woff2" />
+    <Content Include="fonts\sourcesanspro-light-demo.html" />
+    <Content Include="fonts\sourcesanspro-light-webfont.eot" />
+    <Content Include="fonts\sourcesanspro-light-webfont.svg" />
+    <Content Include="fonts\sourcesanspro-light-webfont.ttf" />
+    <Content Include="fonts\sourcesanspro-light-webfont.woff" />
+    <Content Include="fonts\sourcesanspro-light-webfont.woff2" />
+    <Content Include="fonts\sourcesanspro-regular-demo.html" />
+    <Content Include="fonts\sourcesanspro-regular-webfont.eot" />
+    <Content Include="fonts\sourcesanspro-regular-webfont.svg" />
+    <Content Include="fonts\sourcesanspro-regular-webfont.ttf" />
+    <Content Include="fonts\sourcesanspro-regular-webfont.woff" />
+    <Content Include="fonts\sourcesanspro-regular-webfont.woff2" />
+    <Content Include="fonts\sourcesanspro-semibold-demo.html" />
+    <Content Include="fonts\sourcesanspro-semibold-webfont.eot" />
+    <Content Include="fonts\sourcesanspro-semibold-webfont.svg" />
+    <Content Include="fonts\sourcesanspro-semibold-webfont.ttf" />
+    <Content Include="fonts\sourcesanspro-semibold-webfont.woff" />
+    <Content Include="fonts\sourcesanspro-semibold-webfont.woff2" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="images2\accept.png" />
+    <Content Include="images2\agentCalloutBKGD.jpg" />
+    <Content Include="images2\animatedQQgif.gif" />
+    <Content Include="images2\apiHdr.jpg" />
+    <Content Include="images2\apiIcons.jpg" />
+    <Content Include="images2\applyBtn.jpg" />
+    <Content Include="images2\arrow313131.gif" />
+    <Content Include="images2\arrowBack.png" />
+    <Content Include="images2\arrowForward.png" />
+    <Content Include="images2\arrowOrange.gif" />
+    <Content Include="images2\autoFormBottom.gif" />
+    <Content Include="images2\autoFormTop.gif" />
+    <Content Include="images2\barBottomBlueClass %281%29.gif" />
+    <Content Include="images2\barBottomBlueClass.gif" />
+    <Content Include="images2\barBottomDestination.gif" />
+    <Content Include="images2\barBottomGrayClass.gif" />
+    <Content Include="images2\barBottomHomeWidgets %281%29.gif" />
+    <Content Include="images2\barBottomHomeWidgets.gif" />
+    <Content Include="images2\barBottomStartQuote.gif" />
+    <Content Include="images2\barBottomSummary.gif" />
+    <Content Include="images2\barBottomTerms.gif" />
+    <Content Include="images2\barBottomWidgetSteps.gif" />
+    <Content Include="images2\barBottom_price.gif" />
+    <Content Include="images2\barBottom_priceInfo.gif" />
+    <Content Include="images2\barTopBlueClass.gif" />
+    <Content Include="images2\barTopDestination %281%29.gif" />
+    <Content Include="images2\barTopDestination.gif" />
+    <Content Include="images2\barTopGrayClass.gif" />
+    <Content Include="images2\barTopHomeWidgets.gif" />
+    <Content Include="images2\barTopStartQuote.gif" />
+    <Content Include="images2\barTopSummary.gif" />
+    <Content Include="images2\barTopTerms.gif" />
+    <Content Include="images2\barTopWidgetSteps.gif" />
+    <Content Include="images2\barTop_price.gif" />
+    <Content Include="images2\barTop_priceInfo.gif" />
+    <Content Include="images2\baseRateh3.gif" />
+    <Content Include="images2\bkgd_homeShip.gif" />
+    <Content Include="images2\bookedHeader.gif" />
+    <Content Include="images2\bookingHeader5.gif" />
+    <Content Include="images2\bookingHeaderSprite.png" />
+    <Content Include="images2\boxesBg.jpg" />
+    <Content Include="images2\btnContinue_QQcontrol.gif" />
+    <Content Include="images2\btnHomeCreateAccount.png" />
+    <Content Include="images2\btnHomeQQ.png" />
+    <Content Include="images2\btnHomeTour %281%29.png" />
+    <Content Include="images2\btnHomeTour.png" />
+    <Content Include="images2\btn_AddItem.gif" />
+    <Content Include="images2\btn_apiForm.gif" />
+    <Content Include="images2\btn_autoForm.gif" />
+    <Content Include="images2\btn_buyInsurance.jpg" />
+    <Content Include="images2\btn_choose.gif" />
+    <Content Include="images2\btn_delete2.gif" />
+    <Content Include="images2\btn_deleteIcon.gif" />
+    <Content Include="images2\btn_edit.gif" />
+    <Content Include="images2\btn_firstTimer1.jpg" />
+    <Content Include="images2\btn_firstTimer3.jpg" />
+    <Content Include="images2\btn_firstTimerHome.jpg" />
+    <Content Include="images2\btn_getaQQ.gif" />
+    <Content Include="images2\btn_getQQtradeshow.gif" />
+    <Content Include="images2\btn_getQuote.gif" />
+    <Content Include="images2\btn_getQuoteSidebar_onK.gif" />
+    <Content Include="images2\btn_getQuoteSTRONG.gif" />
+    <Content Include="images2\btn_getQuoteTradeshow.gif" />
+    <Content Include="images2\btn_getQuote_onK.gif" />
+    <Content Include="images2\btn_getStarted.gif" />
+    <Content Include="images2\btn_goDaddySend.gif" />
+    <Content Include="images2\btn_headerCareers.gif" />
+    <Content Include="images2\btn_headerCompany.gif" />
+    <Content Include="images2\btn_headerNews.gif" />
+    <Content Include="images2\btn_header_our_people.gif" />
+    <Content Include="images2\btn_landingContact.gif" />
+    <Content Include="images2\btn_login.gif" />
+    <Content Include="images2\btn_loginRegister.gif" />
+    <Content Include="images2\btn_loginRegister2.gif" />
+    <Content Include="images2\btn_saveAR.gif" />
+    <Content Include="images2\btn_saveCC.gif" />
+    <Content Include="images2\btn_trackHomepage.jpg" />
+    <Content Include="images2\btn_view.gif" />
+    <Content Include="images2\btn_viewCard.gif" />
+    <Content Include="images2\btn_whileYouWaitQQ.jpg" />
+    <Content Include="images2\buildBtn.jpg" />
+    <Content Include="images2\bulletGray.gif" />
+    <Content Include="images2\buttonContactForm.jpg" />
+    <Content Include="images2\buttonTLform.jpg" />
+    <Content Include="images2\calcBtn.jpg" />
+    <Content Include="images2\calcHdr.jpg" />
+    <Content Include="images2\calcPitchBtn.jpg" />
+    <Content Include="images2\calcSidebarDivider.gif" />
+    <Content Include="images2\calendar.gif" />
+    <Content Include="images2\cancelBtn.jpg" />
+    <Content Include="images2\CCboxBottom.gif" />
+    <Content Include="images2\CCboxTop.gif" />
+    <Content Include="images2\CClistCCbox.gif" />
+    <Content Include="images2\chk_blu.gif" />
+    <Content Include="images2\chk_green.gif" />
+    <Content Include="images2\contactSideBottomBKGD.jpg" />
+    <Content Include="images2\contactSideTopBKGD.jpg" />
+    <Content Include="images2\contentSideDot.gif" />
+    <Content Include="images2\d2dinfo_bkgd.png" />
+    <Content Include="images2\delete.png" />
+    <Content Include="images2\dotBlue.gif" />
+    <Content Include="images2\ebay_base.jpg" />
+    <Content Include="images2\ebay_btn1.jpg" />
+    <Content Include="images2\ebay_btn2.jpg" />
+    <Content Include="images2\ebay_hdr.jpg" />
+    <Content Include="images2\ebay_linksBase.jpg" />
+    <Content Include="images2\edit.gif" />
+    <Content Include="images2\editCardBKGD.gif" />
+    <Content Include="images2\error-icon.gif" />
+    <Content Include="images2\errorLabel %281%29.gif" />
+    <Content Include="images2\errorLabel.gif" />
+    <Content Include="images2\facebook_findUs.gif" />
+    <Content Include="images2\featIcons.jpg" />
+    <Content Include="images2\formBKGDblue.gif" />
+    <Content Include="images2\getQuoteBKGDsidebar_k.gif" />
+    <Content Include="images2\getQuoteBKGD_k.gif" />
+    <Content Include="images2\getQuoteBtn.gif" />
+    <Content Include="images2\goDaddyHeader.jpg" />
+    <Content Include="images2\grad1.jpg" />
+    <Content Include="images2\grad2.jpg" />
+    <Content Include="images2\graphicHeaders_air.jpg" />
+    <Content Include="images2\graphicHeaders_API.gif" />
+    <Content Include="images2\graphicHeaders_auditing.jpg" />
+    <Content Include="images2\graphicHeaders_auto.jpg" />
+    <Content Include="images2\graphicHeaders_business.gif" />
+    <Content Include="images2\graphicHeaders_calculators.gif" />
+    <Content Include="images2\graphicHeaders_engines.jpg" />
+    <Content Include="images2\graphicHeaders_engines2.jpg" />
+    <Content Include="images2\graphicHeaders_enterprise.jpg" />
+    <Content Include="images2\graphicHeaders_enterprise2.jpg" />
+    <Content Include="images2\graphicHeaders_first.jpg" />
+    <Content Include="images2\graphicHeaders_first2.jpg" />
+    <Content Include="images2\graphicHeaders_furniture.jpg" />
+    <Content Include="images2\graphicHeaders_furniture2.jpg" />
+    <Content Include="images2\graphicHeaders_gov.jpg" />
+    <Content Include="images2\graphicHeaders_gov2.jpg" />
+    <Content Include="images2\graphicHeaders_household.jpg" />
+    <Content Include="images2\graphicHeaders_intermodal.jpg" />
+    <Content Include="images2\graphicHeaders_international.jpg" />
+    <Content Include="images2\graphicHeaders_LTL.jpg" />
+    <Content Include="images2\graphicHeaders_LTLqq.jpg" />
+    <Content Include="images2\graphicHeaders_moto.jpg" />
+    <Content Include="images2\graphicHeaders_ocean.jpg" />
+    <Content Include="images2\graphicHeaders_partner.jpg" />
+    <Content Include="images2\graphicHeaders_rail.jpg" />
+    <Content Include="images2\graphicHeaders_smallBiz2.jpg" />
+    <Content Include="images2\graphicHeaders_STRONG.jpg" />
+    <Content Include="images2\graphicHeaders_supplyChain.jpg" />
+    <Content Include="images2\graphicHeaders_TL.gif" />
+    <Content Include="images2\graphicHeaders_TL.jpg" />
+    <Content Include="images2\graphicHeaders_TL2.jpg" />
+    <Content Include="images2\graphicHeaders_TLequip.jpg" />
+    <Content Include="images2\graphicHeaders_TMS.jpg" />
+    <Content Include="images2\grayDot.gif" />
+    <Content Include="images2\headerTradeshow.gif" />
+    <Content Include="images2\header_businessSolutions.gif" />
+    <Content Include="images2\header_businessSolutions_Bottom.gif" />
+    <Content Include="images2\homeCalloutArrow %281%29.png" />
+    <Content Include="images2\homeCalloutArrow.png" />
+    <Content Include="images2\homeCarriersBKGD.gif" />
+    <Content Include="images2\homeHeadline1.png" />
+    <Content Include="images2\homeHeadline2.png" />
+    <Content Include="images2\homeHeadline3.png" />
+    <Content Include="images2\homeHeadline4.png" />
+    <Content Include="images2\homeHighlightBKGDbottom.gif" />
+    <Content Include="images2\homeHighlightBKGDtop.gif" />
+    <Content Include="images2\homeIcon.gif" />
+    <Content Include="images2\homeInc5000.gif" />
+    <Content Include="images2\homeIntroBtn.gif" />
+    <Content Include="images2\homeMastBKGD.jpg" />
+    <Content Include="images2\homeMastTile.jpg" />
+    <Content Include="images2\icn_arrowUpDownOrange.gif" />
+    <Content Include="images2\icn_deleteO.gif" />
+    <Content Include="images2\icn_editO.gif" />
+    <Content Include="images2\icn_redX.gif" />
+    <Content Include="images2\iconDnld.gif" />
+    <Content Include="images2\iconOpenWindow.gif" />
+    <Content Include="images2\it-doesnt-matter-what-you-ride.jpg" />
+    <Content Include="images2\itemExtrasBottom.gif" />
+    <Content Include="images2\itemExtrasTop.gif" />
+    <Content Include="images2\itemsBottomBlack.gif" />
+    <Content Include="images2\itemsTopBlack.gif" />
+    <Content Include="images2\job-sub-bttn.png" />
+    <Content Include="images2\jobsBtn.jpg" />
+    <Content Include="images2\jobsHdr.jpg" />
+    <Content Include="images2\landingContactFormBKGD.gif" />
+    <Content Include="images2\learnBtn.jpg" />
+    <Content Include="images2\link_useAddyBook.gif" />
+    <Content Include="images2\list.gif" />
+    <Content Include="images2\listBullet.jpg" />
+    <Content Include="images2\locationsBoxBottom.gif" />
+    <Content Include="images2\locationsBoxTop.gif" />
+    <Content Include="images2\lockoutCallout.jpg" />
+    <Content Include="images2\loginRegisterPopupBottom.png" />
+    <Content Include="images2\loginRegisterPopupBullet.gif" />
+    <Content Include="images2\loginRegisterPopupMid.png" />
+    <Content Include="images2\loginRegisterPopupTop.png" />
+    <Content Include="images2\LogoImage\CTII.png" />
+    <Content Include="images2\LogoImage\FWDN.png" />
+    <Content Include="images2\LogoImage\FXFE.png" />
+    <Content Include="images2\LogoImage\ODFL.png" />
+    <Content Include="images2\LogoImage\RDWY.png" />
+    <Content Include="images2\LogoImage\R_L_CARRIERS.png" />
+    <Content Include="images2\LogoImage\SAIA.png" />
+    <Content Include="images2\LogoImage\UPGF.png" />
+    <Content Include="images2\lpgGreyBar.jpg" />
+    <Content Include="images2\lpgHeader.jpg" />
+    <Content Include="images2\lrgImgBg.jpg" />
+    <Content Include="images2\motoBoxBkgd_bottom.jpg" />
+    <Content Include="images2\motoBoxBkgd_top.jpg" />
+    <Content Include="images2\motoPriceBox_bkgd_tall.jpg" />
+    <Content Include="images2\motoPriceBox_overlay.gif" />
+    <Content Include="images2\motoPriceBox_overlay_new.gif" />
+    <Content Include="images2\motoSlideshow_bkgd.gif" />
+    <Content Include="images2\navGradientK.jpg" />
+    <Content Include="images2\notice.png" />
+    <Content Include="images2\picks_disabled.jpg" />
+    <Content Include="images2\plus.gif" />
+    <Content Include="images2\priceBg.jpg" />
+    <Content Include="images2\priceError.jpg" />
+    <Content Include="images2\printIcon.gif" />
+    <Content Include="images2\qqIconLtl.jpg" />
+    <Content Include="images2\qqIconMc.jpg" />
+    <Content Include="images2\qqIconTl.jpg" />
+    <Content Include="images2\qqr_btnAddItem.jpg" />
+    <Content Include="images2\qqr_btnEditDims.jpg" />
+    <Content Include="images2\qqr_chooseBtn.jpg" />
+    <Content Include="images2\qqr_chooseBtnLight.jpg" />
+    <Content Include="images2\qqr_featHead.jpg" />
+    <Content Include="images2\qqr_featPickBgDrk.jpg" />
+    <Content Include="images2\qqr_featPickBgLight.jpg" />
+    <Content Include="images2\qqr_saveBtn.jpg" />
+    <Content Include="images2\qqr_signUpBtn.jpg" />
+    <Content Include="images2\qqr_signUpBtnLight.jpg" />
+    <Content Include="images2\qqr_sortHdr.jpg" />
+    <Content Include="images2\qqr_sortOptBot.gif" />
+    <Content Include="images2\qqr_sortOptTop.jpg" />
+    <Content Include="images2\qqr_updateBtn.jpg" />
+    <Content Include="images2\qtBtnBg.jpg" />
+    <Content Include="images2\quickNsimple.gif" />
+    <Content Include="images2\quoteBKGDbottom.gif" />
+    <Content Include="images2\quoteBKGDtop.gif" />
+    <Content Include="images2\quoteSectionBottom.gif" />
+    <Content Include="images2\quoteSectionTop.gif" />
+    <Content Include="images2\quoteSectionTopLight.gif" />
+    <Content Include="images2\quoteTriangle.gif" />
+    <Content Include="images2\resultsBg.jpg" />
+    <Content Include="images2\resultsBgAlt.jpg" />
+    <Content Include="images2\rfpSteps.jpg" />
+    <Content Include="images2\rfp_btn.gif" />
+    <Content Include="images2\servicesBg.jpg" />
+    <Content Include="images2\signUpbutton.gif" />
+    <Content Include="images2\signUpbuttonBKGD.jpg" />
+    <Content Include="images2\smallBizAgent.jpg" />
+    <Content Include="images2\smImgBg.jpg" />
+    <Content Include="images2\speechBubble.jpg" />
+    <Content Include="images2\srvsHdr.jpg" />
+    <Content Include="images2\standardHeaderbkgd.gif" />
+    <Content Include="images2\stepsBg.jpg" />
+    <Content Include="images2\storyBKGDbottom.gif" />
+    <Content Include="images2\storyBKGDtop.gif" />
+    <Content Include="images2\STRONGpointsBKGD.jpg" />
+    <Content Include="images2\svrTabBg.jpg" />
+    <Content Include="images2\svrTabBg2.jpg" />
+    <Content Include="images2\t2tinfo_bkgd.png" />
+    <Content Include="images2\tabbedDot.gif" />
+    <Content Include="images2\tableHdr.jpg" />
+    <Content Include="images2\TLresultsBKGD.jpg" />
+    <Content Include="images2\tms\thumb_1.jpg" />
+    <Content Include="images2\tms\thumb_2.jpg" />
+    <Content Include="images2\tms\thumb_3.jpg" />
+    <Content Include="images2\tms\thumb_4.jpg" />
+    <Content Include="images2\tms\thumb_5.jpg" />
+    <Content Include="images2\tms\thumb_6.jpg" />
+    <Content Include="images2\tms\thumb_7.jpg" />
+    <Content Include="images2\tms_check.jpg" />
+    <Content Include="images2\tms_contactHdr.jpg" />
+    <Content Include="images2\tms_demoBtn.jpg" />
+    <Content Include="images2\tms_featHdr.jpg" />
+    <Content Include="images2\tms_hdr.jpg" />
+    <Content Include="images2\tms_sendBtn.jpg" />
+    <Content Include="images2\tncBotSms.jpg" />
+    <Content Include="images2\tncTopSms.jpg" />
+    <Content Include="images2\totalBot.jpg" />
+    <Content Include="images2\totalTop.jpg" />
+    <Content Include="images2\trkCompHdr.jpg" />
+    <Content Include="images2\trkWoman.jpg" />
+    <Content Include="images2\twitter_followUs.gif" />
+    <Content Include="images2\unpackResults.jpg" />
+    <Content Include="images2\uPackBtnBg.jpg" />
+    <Content Include="images2\uPackHdr.jpg" />
+    <Content Include="images2\uPackQuoteBtn.jpg" />
+    <Content Include="images2\updatePrice.jpg" />
+    <Content Include="images2\uspsBkBtn.png" />
+    <Content Include="images2\uspsContBtn.png" />
+    <Content Include="images2\uspsHdr.jpg" />
+    <Content Include="images2\uspsHdrStep2.jpg" />
+    <Content Include="images2\uspsHdrStep3.jpg" />
+    <Content Include="images2\uspsHdrStep4.jpg" />
+    <Content Include="images2\uspsHdrStep5.jpg" />
+    <Content Include="images2\uspsOptionsBg.jpg" />
+    <Content Include="images2\uspsSelBtn.png" />
+    <Content Include="images2\widget1.gif" />
+    <Content Include="images2\widget2.gif" />
+    <Content Include="images2\widget3.gif" />
+    <Content Include="images2\wtc_hdr.jpg" />
+    <Content Include="images2\zoom.png" />
+    <Content Include="imagesChatGeneral\rollover.gif" />
+    <Content Include="imagesWidget\carrierBKGD.gif" />
+    <Content Include="Image\apiHdr.jpg" />
+    <Content Include="Image\apiIcons.jpg" />
+    <Content Include="Image\arrowBack.png" />
+    <Content Include="Image\arrowForward.png" />
+    <Content Include="Image\background.jpg" />
+    <Content Include="Image\backgroundinner_new.jpg" />
+    <Content Include="Image\barBottomDestination.gif" />
+    <Content Include="Image\barBottomHomeWidgets.gif" />
+    <Content Include="Image\barBottomStartQuote.gif" />
+    <Content Include="Image\barTopDestination.gif" />
+    <Content Include="Image\barTopHomeWidgets.gif" />
+    <Content Include="Image\barTopStartQuote.gif" />
+    <Content Include="Image\bg_bottombox_la.gif" />
+    <Content Include="Image\bg_button.gif" />
+    <Content Include="Image\bg_corner_account.gif" />
+    <Content Include="Image\bg_transparent.gif" />
+    <Content Include="Image\blank-img.png" />
+    <Content Include="Image\boxesBg.jpg" />
+    <Content Include="Image\btn_blankHeader.jpg" />
+    <Content Include="Image\btn_delete2 %281%29.gif" />
+    <Content Include="Image\btn_delete2.gif" />
+    <Content Include="Image\btn_deleteInactive.gif" />
+    <Content Include="Image\btn_deleteO.gif" />
+    <Content Include="Image\btn_firstTimer1.jpg" />
+    <Content Include="Image\btn_firstTimer3.jpg" />
+    <Content Include="Image\btn_getQuote.gif" />
+    <Content Include="Image\btn_getQuoteSTRONG.gif" />
+    <Content Include="Image\btn_loginRegister.gif" />
+    <Content Include="Image\btn_loginRegister2.gif" />
+    <Content Include="Image\btn_whileYouWaitQQ.jpg" />
+    <Content Include="Image\buildBtn.jpg" />
+    <Content Include="Image\bulletGray.gif" />
+    <Content Include="Image\businessSolution.jpg" />
+    <Content Include="Image\businessSolution.png" />
+    <Content Include="Image\businessSolution2.png" />
+    <Content Include="Image\calcBtn.jpg" />
+    <Content Include="Image\calcHdr.jpg" />
+    <Content Include="Image\calcPitchBtn.jpg" />
+    <Content Include="Image\cancelBtn.jpg" />
+    <Content Include="Image\chk_green.gif" />
+    <Content Include="Image\error-icon.gif" />
+    <Content Include="Image\fcfooter1.jpg" />
+    <Content Include="Image\featIcons.jpg" />
+    <Content Include="Image\goDaddyHeader.jpg" />
+    <Content Include="Image\grad1.jpg" />
+    <Content Include="Image\grad2 %281%29.jpg" />
+    <Content Include="Image\grad2.jpg" />
+    <Content Include="Image\graphicHeaders_blank.jpg" />
+    <Content Include="Image\graphicHeaders_engine.jpg" />
+    <Content Include="Image\graphicHeaders_first.jpg" />
+    <Content Include="Image\graphicHeaders_furniture.jpg" />
+    <Content Include="Image\graphicHeaders_orangeTruck.jpg" />
+    <Content Include="Image\graphicHeaders_redTruck.jpg" />
+    <Content Include="Image\graphicHeaders_youCrate.jpg" />
+    <Content Include="Image\Header1.png" />
+    <Content Include="Image\icn_arrowUpDownOrange.gif" />
+    <Content Include="Image\icn_redX.gif" />
+    <Content Include="Image\icon1.png" />
+    <Content Include="Image\icon2.png" />
+    <Content Include="Image\icon5.png" />
+    <Content Include="Image\image-1.jpg" />
+    <Content Include="Image\image-2.jpg" />
+    <Content Include="Image\image-3.jpg" />
+    <Content Include="Image\image01.png" />
+    <Content Include="Image\image02.png" />
+    <Content Include="Image\image03.png" />
+    <Content Include="Image\image04.png" />
+    <Content Include="Image\jobsBtn.jpg" />
+    <Content Include="Image\jobsHdr.jpg" />
+    <Content Include="Image\learnBtn.jpg" />
+    <Content Include="Image\list.gif" />
+    <Content Include="Image\listBullet.jpg" />
+    <Content Include="Image\lockoutCallout.jpg" />
+    <Content Include="Image\loginFormBottom.gif" />
+    <Content Include="Image\loginFormTop.gif" />
+    <Content Include="Image\loginRegisterPopupBottom.png" />
+    <Content Include="Image\loginRegisterPopupBullet.gif" />
+    <Content Include="Image\loginRegisterPopupMid.png" />
+    <Content Include="Image\loginRegisterPopupTop.png" />
+    <Content Include="Image\Logistic.png" />
+    <Content Include="Image\lpgGreyBar.jpg" />
+    <Content Include="Image\lpgHeader.jpg" />
+    <Content Include="Image\lrgImgBg.jpg" />
+    <Content Include="Image\onboarding_form.png" />
+    <Content Include="Image\plus.gif" />
+    <Content Include="Image\priceBg.jpg" />
+    <Content Include="Image\priceError.jpg" />
+    <Content Include="Image\qtBtnBg.jpg" />
+    <Content Include="Image\qtnmark.gif" />
+    <Content Include="Image\registerLoginBottom.gif" />
+    <Content Include="Image\registerLoginTop.gif" />
+    <Content Include="Image\rfpSteps.jpg" />
+    <Content Include="Image\rfp_btn.gif" />
+    <Content Include="Image\rightgreyarrow.jpg" />
+    <Content Include="Image\servicesBg.jpg" />
+    <Content Include="Image\smImgBg.jpg" />
+    <Content Include="Image\srvsHdr.jpg" />
+    <Content Include="Image\standardHeaderbkgd %281%29.gif" />
+    <Content Include="Image\standardHeaderbkgd.gif" />
+    <Content Include="Image\stepsBg.jpg" />
+    <Content Include="Image\svrTabBg.jpg" />
+    <Content Include="Image\svrTabBg2.jpg" />
+    <Content Include="Image\tabbedDot.gif" />
+    <Content Include="Image\tableHdr.jpg" />
+    <Content Include="Image\tandcBottom.gif" />
+    <Content Include="Image\tandcTop.gif" />
+    <Content Include="Image\tms_check.jpg" />
+    <Content Include="Image\tms_demoBtn.jpg" />
+    <Content Include="Image\tms_featHdr.jpg" />
+    <Content Include="Image\tms_hdr.jpg" />
+    <Content Include="Image\tncBotSms.jpg" />
+    <Content Include="Image\tncTopSms.jpg" />
+    <Content Include="Image\totalBot.jpg" />
+    <Content Include="Image\totalTop.jpg" />
+    <Content Include="Image\transparent_bg.gif" />
+    <Content Include="Image\trkCompHdr.jpg" />
+    <Content Include="Image\trkWoman.jpg" />
+    <Content Include="Image\uPackBtnBg.jpg" />
+    <Content Include="Image\uPackHdr.jpg" />
+    <Content Include="Image\uPackQuoteBtn.jpg" />
+    <Content Include="Image\updatePrice.jpg" />
+    <Content Include="Image\uspsBkBtn.png" />
+    <Content Include="Image\uspsContBtn.png" />
+    <Content Include="Image\uspsHdr.jpg" />
+    <Content Include="Image\uspsHdrStep2.jpg" />
+    <Content Include="Image\uspsHdrStep3.jpg" />
+    <Content Include="Image\uspsHdrStep4.jpg" />
+    <Content Include="Image\uspsHdrStep5.jpg" />
+    <Content Include="Image\uspsOptionsBg.jpg" />
+    <Content Include="Image\uspsSelBtn.png" />
+    <Content Include="Image\vote-for-freightcenter-ro.jpg" />
+    <Content Include="Image\vote-for-freightcenter.jpg" />
+    <Content Include="Image\wbackground.jpg" />
+    <Content Include="img\about-banner.jpg" />
+    <Content Include="img\about-bannerOLD.jpg" />
+    <Content Include="img\admin-banner.jpg" />
+    <Content Include="img\adminBG.jpg" />
+    <Content Include="img\banner.jpg" />
+    <Content Include="img\banner1.jpg" />
+    <Content Include="img\banner2.jpg" />
+    <Content Include="img\blankArrow.png" />
+    <Content Include="img\blankImg.png" />
+    <Content Include="img\border.jpg" />
+    <Content Include="img\border2.jpg" />
+    <Content Include="img\carrier-banner.jpg" />
+    <Content Include="img\carrier-bannerOLD.jpg" />
+    <Content Include="img\carrier.png" />
+    <Content Include="img\clock.png" />
+    <Content Include="img\contact-banner.jpg" />
+    <Content Include="img\contact-bannerOLD.jpg" />
+    <Content Include="img\contactBG.jpg" />
+    <Content Include="img\cross-script.png" />
+    <Content Include="img\day.png" />
+    <Content Include="img\dr-img.jpg" />
+    <Content Include="img\editGrid.png" />
+    <Content Include="img\footer-bg.jpg" />
+    <Content Include="img\head-bg.jpg" />
+    <Content Include="img\l1.png" />
+    <Content Include="img\l2.png" />
+    <Content Include="img\l3.png" />
+    <Content Include="img\l4.png" />
+    <Content Include="img\loading.gif" />
+    <Content Include="img\login.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logo2.png" />
+    <Content Include="img\logo3.png" />
+    <Content Include="img\logoOLD.png" />
+    <Content Include="img\med.png" />
+    <Content Include="img\moon.png" />
+    <Content Include="img\next.png" />
+    <Content Include="img\night.png" />
+    <Content Include="img\offerimg1.jpg" />
+    <Content Include="img\offerimg2.jpg" />
+    <Content Include="img\offerimg3.jpg" />
+    <Content Include="img\offerimg4.jpg" />
+    <Content Include="img\pause.png" />
+    <Content Include="img\play.png" />
+    <Content Include="img\prev.png" />
+    <Content Include="img\register.jpg" />
+    <Content Include="img\s1.png" />
+    <Content Include="img\s2.png" />
+    <Content Include="img\s3.png" />
+    <Content Include="img\s4.png" />
+    <Content Include="img\secBg.jpg" />
+    <Content Include="img\servicebg.jpg" />
+    <Content Include="img\shipper-banner.jpg" />
+    <Content Include="img\shipper-bannerOLD.jpg" />
+    <Content Include="img\shipper.png" />
+    <Content Include="img\shipperBG.jpg" />
+    <Content Include="img\sun.png" />
+    <Content Include="img\test-img1.png" />
+    <Content Include="img\truck.png" />
+    <Content Include="img\truck2.png" />
+    <Content Include="img\truck3.png" />
+    <Content Include="img\volume.png" />
+    <Content Include="img\work-bg.jpg" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="DataModel\FPSDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FPSDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataModel\FPSDataModel.edmx.diagram">
+      <DependentUpon>FPSDataModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\FPS_Publish.pubxml" />
+    <Content Include="Scripts\ai.0.15.0-build58334.js" />
+    <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\animate-waypoints.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery.flexslider.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.singlePageNav.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\video.js" />
+    <Content Include="Scripts\waypoints.min.js" />
+    <Content Include="Scripts\website.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Carrier.cshtml" />
+    <Content Include="Views\Home\Shipper.cshtml" />
+    <Content Include="Views\Home\Termsandconditions.cshtml" />
+    <Content Include="Views\Quote\QuickQuote.cshtml" />
+    <Content Include="Views\Quote\Truckloadquote.cshtml" />
+    <Content Include="Views\Quote\QuickQuoteReview.cshtml" />
+    <Content Include="Settings\AppSettings.config" />
+    <Content Include="Settings\ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\FreightQuoteHome.cshtml" />
+    <Content Include="Views\Quote\AccountVerification.cshtml" />
+    <Content Include="Views\Quote\LocationDetails.cshtml" />
+    <Content Include="Views\Quote\ShipmentDetails.cshtml" />
+    <Content Include="Views\Quote\PaymentDetails.cshtml" />
+    <Content Include="Views\Quote\Confirmation.cshtml" />
+    <Content Include="Views\Admin\AdminLogin.cshtml" />
+    <Content Include="Views\Admin\Addcarriers.cshtml" />
+    <Content Include="Views\Admin\CreateCarrier.cshtml" />
+    <Content Include="Views\Admin\EditCarrier.cshtml" />
+    <Content Include="Views\Admin\AddCommodityCategory.cshtml" />
+    <Content Include="Views\Admin\CreateCommodityCategory.cshtml" />
+    <Content Include="Views\Admin\EditCommodityCategory.cshtml" />
+    <Content Include="Views\Admin\AddPackaging.cshtml" />
+    <Content Include="Views\Admin\CreatePackaging.cshtml" />
+    <Content Include="Views\Admin\EditPackaging.cshtml" />
+    <Content Include="Views\Admin\AddCondition.cshtml" />
+    <Content Include="Views\Admin\CreateCondition.cshtml" />
+    <Content Include="Views\Admin\EditCondition.cshtml" />
+    <Content Include="Views\Admin\AddFreightClass.cshtml" />
+    <Content Include="Views\Admin\CreateFreightClass.cshtml" />
+    <Content Include="Views\Admin\EditFreightClass.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialAdmin.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Views\Quote\TruckloadReview.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603051055596_InitialCreate.resx">
+      <DependentUpon>201603051055596_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603300544316_InitialMigrations.resx">
+      <DependentUpon>201603300544316_InitialMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FPSEntity\FPSEntity.csproj">
+      <Project>{eb358ec4-24a8-4adf-a93c-b1e6ee9bc0b0}</Project>
+      <Name>FPSEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FPSRepository\FPSRepository.csproj">
+      <Project>{0c72a0f3-3289-4985-948f-6f478b34588e}</Project>
+      <Name>FPSRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FPSService\FPSService.csproj">
+      <Project>{7f3a8c36-ed40-45c7-af4e-caf105f82451}</Project>
+      <Name>FPSService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>24992</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:24992/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

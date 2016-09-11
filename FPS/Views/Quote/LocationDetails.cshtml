@@ -1,0 +1,306 @@
+﻿@model FPS.Models.PickupDropoffModel
+@{
+    ViewBag.Title = "Location Details";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div class="clear" style="height:20px;">&nbsp;</div>
+
+        <input id="hideFreightClassValue" name="hideFreightClassValue" type="hidden" value="false">
+        <div class="row margin-bottom">
+            <div class="clear" style="height:20px;">&nbsp;</div>
+            <div class="col-md-12">
+                <div id="bookHeader" class="booking1">
+                    <span class="bookingNum">
+                        Shipment Id
+                        <span id="lblQuoteid">@Model.PickupDetail.QuoteID</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="destinationWrap grid_12">
+                <div class="destination">
+                    <div style="border-right: 1px solid white; float: left">
+                        <div class="instruct" style="border-right: 1px solid #bababa">
+                            <h1>
+                                Pickup date &amp; time
+                            </h1>
+                            <p>
+                                When will the shipment be packaged and ready for pickup?
+                            </p>
+                        </div>
+                    </div>
+                    <div id="pickupDate" style="padding-top: 8px">
+                        <h3 style="font-weight: bold; margin-bottom: 6px; width: 620px">
+                            What date would you like your shipment picked up? (Pickups are exclusively Mon-Fri,
+                            1-5pm)
+                        </h3>
+                        <div class="column">
+                            <ul>
+                                <li class="missedFieldRelative">                                   
+                                    @Html.LabelFor(model => model.PickupDetail.PickupDate)
+                                    @Html.TextBoxFor(model => model.PickupDetail.PickupDate, new { @class = "form-control datepicker" })                                    
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end pickup date-->
+                </div>
+            </div>
+
+            <div class="destinationWrap grid_12">
+                <div class="destination">
+                    <div class="instruct">
+                        <h1>
+                            Shipping From
+                        </h1>
+                        <p>
+                            Fill out the fields with information that pertains to the address the shipment will
+                            be picked up from. If you're using a terminal address, fill it out about the person
+                            dropping off the shipment.
+                        </p>
+                    </div>
+                    <div class="stepFormHolder">
+                        <div class="stepForm">
+                            <div class="locationType">
+                                <div style="width: 100%; float: left;">
+                                    <label>
+                                        Location Type:
+                                    </label>
+                                    @if(Model.PickupDetail.LocationType == "2")
+                                    {
+                                        <p>Business</p>
+                                    }
+                                    else if (Model.PickupDetail.LocationType == "4")
+                                    {
+                                        <p>Freight Carrier Terminal</p>
+                                    }
+                                    else
+                                    {  <p>Residential or Non-commercial</p>}
+
+                                </div>
+                                <div style="float: right; width: 35%; padding-right: 20px">
+                                    <div style="float: right;"></div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <ul>
+                                    <li class="missedFieldRelative">
+                                        @Html.LabelFor(model => model.PickupDetail.Company)
+                                        @Html.TextBoxFor(model => model.PickupDetail.Company, new { @class = "form-control datepicker" })
+
+                                    </li>
+                                    <li class="missedFieldRelative">
+                                        @Html.LabelFor(model => model.PickupDetail.FirstName)
+                                        @Html.TextBoxFor(model => model.PickupDetail.FirstName, new { @class = "form-control datepicker" })
+                                    </li>
+                                    <li>
+                                        @Html.LabelFor(model => model.PickupDetail.LastName)
+                                        @Html.TextBoxFor(model => model.PickupDetail.LastName, new { @class = "form-control datepicker" })
+                                    </li>
+                                    <li>
+                                        @Html.LabelFor(model => model.PickupDetail.Department)
+                                        @Html.TextBoxFor(model => model.PickupDetail.Department, new { @class = "form-control datepicker" })
+                                    </li>
+                                    <li class="missedFieldRelative fix">
+                                        @Html.LabelFor(model => model.PickupDetail.EmailAddress)
+                                        @Html.TextBoxFor(model => model.PickupDetail.EmailAddress, new { @class = "form-control datepicker" })
+                                    </li>
+
+                                    <li class="missedFieldRelative">
+                                        @Html.LabelFor(model => model.PickupDetail.Phone)
+                                        @Html.TextBoxFor(model => model.PickupDetail.Phone, new { @class = "form-control datepicker" })
+                                    </li>
+
+                                    <li class="last missedFieldRelative">
+                                        @Html.LabelFor(model => model.PickupDetail.AlternatePhone)
+                                        @Html.TextBoxFor(model => model.PickupDetail.AlternatePhone, new { @class = "form-control datepicker" })
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="column">
+                                <ul>
+                                    <li>
+                                        @Html.LabelFor(model => model.PickupDetail.Fax)
+                                        @Html.TextBoxFor(model => model.PickupDetail.Fax, new { @class = "form-control datepicker" })
+                                    </li>
+                                    <li class="missedFieldRelative">
+                                        @Html.LabelFor(model => model.PickupDetail.StreetAddress)
+                                        @Html.TextBoxFor(model => model.PickupDetail.StreetAddress, new { @class = "form-control datepicker" })
+                                    </li>
+                                    <li>
+                                        @Html.LabelFor(model => model.PickupDetail.Apartment)
+                                        @Html.TextBoxFor(model => model.PickupDetail.Apartment, new { @class = "form-control datepicker" })
+                                    </li>
+                                    <li class="missedFieldRelative">
+                                        @Html.LabelFor(model => model.PickupDetail.City)
+                                        @Html.TextBoxFor(model => model.PickupDetail.City, new { @class = "form-control datepicker",@readonly="readonly" })
+                                    </li>
+                                    <li>
+                                        @Html.LabelFor(model => model.PickupDetail.State)
+                                        @Html.TextBoxFor(model => model.PickupDetail.State, new { @class = "form-control datepicker",@readonly="readonly" })
+                                    </li>
+                                    <li class="missedFieldRelative">
+                                        @Html.LabelFor(model => model.PickupDetail.Zip)
+                                        @Html.TextBoxFor(model => model.PickupDetail.Zip, new { @class = "form-control datepicker",@readonly="readonly" })
+                                    </li>
+                                    <li class="last">
+                                        @Html.LabelFor(model => model.PickupDetail.Country)
+                                        @Html.TextBoxFor(model => model.PickupDetail.Country, new { @class = "form-control datepicker",@readonly="readonly" })
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="clear" style="height:20px;">&nbsp;</div>
+        <div class="destinationWrap grid_12">
+            <div class="destination">
+                <div class="instruct">
+                    <h1 class="stepsHead">
+                        Shipping To
+                    </h1>
+                    <p>
+                        Fill out the fields with information that pertains to the address the shipment will
+                        be delivered to. If you're using a terminal address, fill it out about the person
+                        picking up the shipment.
+                    </p>
+                </div>
+                <div class="stepFormHolder">
+                    <div class="stepForm">
+                        <div class="locationType">
+                            <div style="width: 100%; float: left;">
+                                @Html.LabelFor(model => model.DropoffDetail.LocationType)
+                                @if (Model.PickupDetail.LocationType == "2")
+                                {
+                                    <p>Business</p>
+                                }
+                                else if (Model.PickupDetail.LocationType == "4")
+                                {
+                                    <p>Freight Carrier Terminal</p>
+                                }
+                                else
+                                {  <p>Residential or Non-commercial</p>}
+                            </div>
+                            <div style="float: right; width: 35%; padding-right: 20px">
+                                <div style="float: right;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <ul>
+                                <li class="missedFieldRelative">
+                                    @Html.LabelFor(model => model.DropoffDetail.Company)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.Company, new { @class = "form-control datepicker" })
+                                </li>
+                                <li class="missedFieldRelative">
+                                    @Html.LabelFor(model => model.DropoffDetail.FirstName)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.FirstName, new { @class = "form-control datepicker" })
+                                </li>
+                                <li>
+                                    @Html.LabelFor(model => model.DropoffDetail.LastName)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.LastName, new { @class = "form-control datepicker" })
+                                </li>
+                                <li>
+                                    @Html.LabelFor(model => model.DropoffDetail.Department)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.Department, new { @class = "form-control datepicker" })
+                                </li>
+                                <li class="missedFieldRelative fix">
+                                    @Html.LabelFor(model => model.DropoffDetail.EmailAddress)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.EmailAddress, new { @class = "form-control datepicker" })
+                                </li>
+                                <li class="missedFieldRelative">
+                                    @Html.LabelFor(model => model.DropoffDetail.Phone)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.Phone, new { @class = "form-control datepicker" })
+                                </li>
+                                <li class="last missedFieldRelative">
+                                    @Html.LabelFor(model => model.DropoffDetail.AlternatePhone)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.AlternatePhone, new { @class = "form-control datepicker" })
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <ul>
+                                <li>
+                                    @Html.LabelFor(model => model.DropoffDetail.Fax)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.Fax, new { @class = "form-control datepicker" })
+                                </li>
+                                <li class="missedFieldRelative">
+                                   @Html.LabelFor(model => model.DropoffDetail.StreetAddress)
+                                @Html.TextBoxFor(model => model.DropoffDetail.StreetAddress, new { @class = "form-control datepicker" })
+                                </li>
+                                <li>
+                                    @Html.LabelFor(model => model.DropoffDetail.AlternatePhone)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.AlternatePhone, new { @class = "form-control datepicker" })
+                                </li>
+                                <li class="missedFieldRelative">
+                                   @Html.LabelFor(model => model.DropoffDetail.City)
+                                @Html.TextBoxFor(model => model.DropoffDetail.City, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                </li>
+                                <li>
+                                    @Html.LabelFor(model => model.DropoffDetail.State)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.State, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                </li>
+                                <li class="missedFieldRelative">
+                                   @Html.LabelFor(model => model.DropoffDetail.Zip)
+                                @Html.TextBoxFor(model => model.DropoffDetail.Zip, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                </li>
+                                <li class="last">
+                                    @Html.LabelFor(model => model.DropoffDetail.Country)
+                                    @Html.TextBoxFor(model => model.DropoffDetail.Country, new { @class = "form-control datepicker", @readonly = "readonly" })
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="shipToEmail">
+                            <span>
+                                <div id="shipToEmailTitle">
+                                    <h3>
+                                        Need Tracking Updates For A 2nd Recipient?
+                                    </h3>
+                                    <p>
+                                        If you’d like to have your tracking updates sent to an additional address, please
+                                        enter it here.
+                                    </p>
+                                </div>
+                                <div id="shipToEmailInput">
+                                    <label>
+                                        Email
+                                    </label>
+                                    <input name="txtDropOffEmail" id="txtDropOffEmail" tabindex="99" class="txtbox1" type="text">
+                                    <span id="revDropOffEmail" class="PUDODmissedField" style="color:Red;display:none;">*</span>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearFix margin-top"></div>
+        <div class="row">
+            <div class="col-md-8 text-align-right">
+                <a href="#headerHolder">
+                    <input type="submit" class="btn-normal" id="ibtnQuickQuote" style="border:0px;" value="Continue" name="action">
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+}
+
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+</script>

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Confirmation";
+}
+
+<div class="container">
+    <div class="clear" style="height:20px;">&nbsp;</div>
+    <div class="grid_12">
+        <div id="bookHeader" class="booking4">
+            <span class="bookingNumship">
+                Shipment Id
+                <span id="lblQuoteid">@ViewBag.ShipmentID</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h1>
+                Payment successfully.
+            </h1>
+        </div>
+        @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            <div class="col-lg-5 text-align-right">
+                <a href="~/Quote/QuickQuote" title="" id="btnHomeQQ" class="btn-normal">Get more Free Quote - Instant Prices from Multiple Carriers</a>
+            </div>}
+        else
+        {
+            <div class="col-lg-3 text-align-right">
+                <a href="~/Account/Register" title="" id="btnHomeCreateAccount" class="btn-normal">Create an Account</a>
+            </div>}
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="39bee1abe9134702b414a62343672c6a" Name="Diagram1">
+        <EntityTypeShape EntityType="FPSDatabaseModel.AspNetRole" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.AspNetUserLogin" Width="2.25" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.AspNetUserRole" Width="2.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.AspNetUser" Width="2.125" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.ItemDetail" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.QuickQuoteDetail" Width="2.375" PointX="3" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="FPSDatabaseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FPSDatabaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FPSDatabaseModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FPSDatabaseModel.FK_dbo_ItemDetails_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FPSDatabaseModel.FK_dbo_QuickQuoteDetails_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.CarriersDetail" Width="1.5" PointX="6.375" PointY="6.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.ItemCollectionAddress" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.ItemDeliveryAddress" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.ItemDropoffDetail" Width="1.5" PointX="8.375" PointY="8.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.ItemPickupDetail" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.ShipmentDetail" Width="1.5" PointX="10.375" PointY="5.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.PaymentsDetail" Width="1.5" PointX="10.375" PointY="9.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.User" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.tblCommodityCategory" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.tblCondition" Width="1.5" PointX="12.375" PointY="4.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.tblFreightClass" Width="1.5" PointX="12.375" PointY="7.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.tblPackaging" Width="1.5" PointX="12.375" PointY="10.75" />
+        <EntityTypeShape EntityType="FPSDatabaseModel.TruckloadQuoteDetail" Width="1.5" PointX="3.625" PointY="17" />
+        <AssociationConnector Association="FPSDatabaseModel.FK_dbo_TruckloadQuoteDetails_dbo_AspNetUsers_UserId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

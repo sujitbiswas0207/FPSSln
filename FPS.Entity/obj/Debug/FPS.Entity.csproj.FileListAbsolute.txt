@@ -1,0 +1,6 @@
+C:\Users\sujit.biswas\Documents\Visual Studio 2015\Projects\FPSSln\FPS.Entity\bin\Debug\FPS.Entity.exe.config
+C:\Users\sujit.biswas\Documents\Visual Studio 2015\Projects\FPSSln\FPS.Entity\bin\Debug\FPS.Entity.exe
+C:\Users\sujit.biswas\Documents\Visual Studio 2015\Projects\FPSSln\FPS.Entity\bin\Debug\FPS.Entity.pdb
+C:\Users\sujit.biswas\Documents\Visual Studio 2015\Projects\FPSSln\FPS.Entity\obj\Debug\FPS.Entity.csprojResolveAssemblyReference.cache
+C:\Users\sujit.biswas\Documents\Visual Studio 2015\Projects\FPSSln\FPS.Entity\obj\Debug\FPS.Entity.exe
+C:\Users\sujit.biswas\Documents\Visual Studio 2015\Projects\FPSSln\FPS.Entity\obj\Debug\FPS.Entity.pdb

@@ -1,0 +1,42 @@
+﻿@model FPS.DataModel.tblPackaging
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend class="invisible">Comodity Packaging</legend>
+        <label>@ViewBag.errormsg</label>
+        <div class="adminPopupBox">
+            <h3>Add Comodity Packaging</h3>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.Name, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            
+            <p>
+                <input class="btn-Standard btn-normal-full-with" type="button" value="Create" onclick="SavePackaging()" />
+            </p>
+
+            <div>
+                <input type="button" class="btn-StandardReverse btn-normal-full-with-bg" value="Close" onclick="CloseWindow()" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+<script type="text/javascript">
+    function SavePackaging() {
+        var cName = $("#Name").val();
+
+        var Packaging = { "Name": cName };
+
+        $.post('CreatePackaging', Packaging,
+        function (data) { location = location.href; }, 'json');
+    }
+
+    function CloseWindow() {
+        location = location.href;
+    }
+</script>

@@ -1,0 +1,47 @@
+﻿@model FPS.DataModel.tblCommodityCategory
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend class="invisible">Comodity category</legend>
+        <label>@ViewBag.errormsg</label>
+        <div class="adminPopupBox">
+            <h3>Edit Comodity category</h3>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.Name, new { @class = "form-control form-control-fps", placeholder = "Type Carrier details" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+           
+            <div class="form-group">
+                @Html.LabelFor(model => model.Value, new { @class = "col-md-2 control-label adminForm-Label" })
+                @Html.EditorFor(model => model.Value, new { @readonly = true, @class = "form-control form-control-fps", })
+                @Html.ValidationMessageFor(model => model.Value)
+            </div>
+           
+            <p>
+                <input class="btn-Standard btn-normal-full-with" type="button" value="Update" onclick="UpdateComodity()" />
+            </p>
+            <div class="btn-StandardReverse btn-normal-full-with-bg">
+                @Html.ActionLink("Close", "AddCommodityCategory")
+            </div>
+        </div>
+    </fieldset>
+}
+
+
+
+<script type="text/javascript">
+    function UpdateComodity() {
+        var cName = $("#Name").val();
+        var id = $("#Value").val();
+        var comodities = {
+            "Name": cName, "id": id
+        };
+
+        $.post('EditCommodityCategory', comodities,
+        function (data) { location = location.href; }, 'json');
+    }
+</script>

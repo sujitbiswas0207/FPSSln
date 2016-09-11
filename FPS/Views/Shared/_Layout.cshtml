@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+    <link rel="stylesheet" href="~/css/jquery-ui.css.css">
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">*@
+    @*<script src="//code.jquery.com/jquery-1.10.2.js"></script>*@
+    @*<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+    
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/stylesheet.css" rel="stylesheet" />
+
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/website.js"></script>
+    <script src="~/Scripts/waypoints.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/animate-waypoints.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/video.js"></script>
+    <script src="~/Scripts/jquery.singlePageNav.js"></script>
+
+
+    <script defer src="~/Scripts/jquery.flexslider.js"></script>
+    <script>
+if ( ! window.console ) console = { log: function(){} };
+$('.single-page-nav, .single-page-nav2').singlePageNav({
+offset: $('header').outerHeight(),
+filter: ':not(.external)',
+updateHash: true,
+beforeStart: function() {
+console.log('begin scrolling');
+},
+onComplete: function() {
+console.log('done scrolling');
+}
+});
+    </script>
+
+    <script defer src="~/Scripts/jquery.flexslider.js"></script>
+
+    <script type="text/javascript">
+$(window).load(function(){
+$('#testimonialSlider').flexslider({
+animation: "slide",
+directionNav: false,
+controlNav: true,
+start: function(slider){
+$('body').removeClass('loading');
+}
+});
+
+
+$('#flexbanner').flexslider({
+
+animation: "fade",
+
+directionNav: false,
+
+controlNav: true,
+
+start: function(slider){
+
+$('body').removeClass('loading');
+
+}
+
+});
+});
+    </script> 
+
+    
+    @*====================== Added New Design Element ==================================== *@
+
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/simple-line-icons.css" rel="stylesheet">
+    <link href="~/Content/fonts.css" rel="stylesheet">
+    <link href="~/Content/page-scroll.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/flexslider.css" type="text/css" media="screen" />
+    <link href="~/Content/animation.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+
+@*=====================================================================================*@
+    
+
+</head>
+<body>
+    <div class="loader"></div>
+    <header>   
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <nav class="navbar navbar-default">
+                <div class="clearfix">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><img src="~/img/logo.png" alt=""></a>
+                        @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                    </div>
+                    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Shipper", "Shipper", "Home")</li>
+                            <li>@Html.ActionLink("Carrier", "Carrier", "Home")</li>
+                            <li>@Html.ActionLink("About Us", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </nav>
+        </div>      
+
+</header>
+@if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    <div class="clear" style="height:60px;">&nbsp;</div>
+    <div id="SubNavContainer">
+        <div id="subNavHolder">
+            <div id="subNav">
+                @Html.ActionLink("My FreightCenter Home", "FreightQuoteHome", "Home")
+                @Html.ActionLink("New Freight Quote", "QuickQuote", "Quote")
+                <a href="#">Bookings</a>
+                <a href="#">Saved Quotes</a>
+                <a href="#">Calculators</a>
+                <a href="#">Insurance</a>
+                <a href="#">Request For Pricing</a>
+                <a href="#" class="last">Account Info.</a>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+    </div>}
+    <div>
+        @RenderBody()
+       
+        <footer>
+            <div class="container">
+                <div class="footerBlock">
+                    <div class="row">
+                        <div class="col-sm-5 col-md-5">
+                            <div class="newsText">
+                                <h3>news letter subscription</h3>
+                                <h4>Join our newsletter for offers & updates</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 col-md-7">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Your Email">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">subscribe</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="footerBlock2">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-md-12"><h5>Fright Pricing Solutions</h5></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <address>
+                                        34125 U.S. 19 N, Suite 300 <br>
+                                        Palm Harbor, <br>
+                                        FL 34684
+                                    </address>
+                                </div>
+                                <div class="col-sm-6">
+                                    <address>
+                                        T:&nbsp; 780 743 6116<br>
+                                        F:&nbsp; 780 750 6101<br>
+                                        E:&nbsp; <a href="mailto:info@fps.com">info@fps.com</a>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-md-12"><h5>INFO</h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <ul>
+                                        <li><a href="#">Press</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-4">
+                                    <ul>
+                                        <li><a href="#">FAQ</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-4">
+                                    <ul>
+                                        <li><a href="#">Terms of Use</a></li>
+                                        <li><a href="#">Terms of Service</a></li>
+                                        <li><a href="#">Copyright Policy</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="social">
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h6>Copyright © 2015</h6>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+
+   
+    @RenderSection("scripts", required: false)
+
+    @*===================  Added New Design JS files===================*@
+
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/website.js"></script>
+    <script src="~/Scripts/waypoints.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/animate-waypoints.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/video.js"></script>
+    <script src="~/Scripts/jquery.singlePageNav.js"></script>
+
+
+@*================================================================================*@
+
+
+</body>
+</html>

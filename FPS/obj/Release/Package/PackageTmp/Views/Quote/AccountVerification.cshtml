@@ -1,0 +1,144 @@
+﻿
+@model FPS.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Account Verification";
+}
+
+<link rel="stylesheet" href="~/css/jquery-ui.css.css">
+
+@using (Html.BeginForm("AccountVerification", "Quote", FormMethod.Post, new { role = "form" }))
+{
+    <div class="container">
+        <div class="clear" style="height:20px;">&nbsp;</div>
+
+        <input id="hideFreightClassValue" name="hideFreightClassValue" type="hidden" value="false">
+        <div class="row margin-bottom">
+            <div class="clear" style="height:20px;">&nbsp;</div>
+            <div class="col-md-12">
+                <div id="bookHeader" class="booking0">
+                    <span class="bookingNum">
+                        Shipment Id
+                        <span id="lblQuoteid">11556752</span>
+                    </span>
+                </div>
+
+                <div class="destinationWrap grid_12">
+                    <div class="destination">
+                        <div class="instruct">
+                            <h1>
+                                Verify Account Details
+                            </h1>
+                            <p>
+                                Please fill out the form of the right with the rest of the information needed for your account.
+                            </p>
+                        </div>
+                        <div class="stepFormHolder">
+                            <div class="stepForm">
+                                <div class="column">
+                                    <ul>
+                                        <li>
+                                            @Html.LabelFor(m => m.Fname, new { @class = "col-md-2 control-label" })<span style="color: #ff0000">*</span>
+                                            @Html.TextBoxFor(m => m.Fname, new { @class = "form-control" })
+                                        </li>
+
+                                        <li>
+                                            @Html.LabelFor(m => m.Lname, new { @class = "col-md-2 control-label" })
+                                            @Html.TextBoxFor(m => m.Lname, new { @class = "form-control" })
+                                        </li>
+
+                                        <li>
+                                            @Html.LabelFor(m => m.Ctype, new { @class = "col-md-2 control-label" })
+                                            @if (@ViewBag.Ctype == 1)
+                                            {
+                                                <div>@Html.RadioButtonFor(b => b.Ctype, "1", new { @Checked = "checked", style = "width: 20px;", disabled = "disabled" }) Individual</div>
+                                                <div>
+                                                    @Html.RadioButtonFor(b => b.Ctype, "2", new { style = "width: 20px;", disabled = "disabled" }) Business
+                                                </div>}
+                                            else
+                                            {
+                                                <div>
+                                                    @Html.RadioButtonFor(b => b.Ctype, "1", new { style = "width: 20px;", disabled = "disabled" }) Individual
+                                                </div>
+                                                <div>
+                                                    @Html.RadioButtonFor(b => b.Ctype, "2", new { @Checked = "checked", style = "width: 20px;", disabled = "disabled" }) Business
+                                                </div>}
+                                        </li>
+
+                                        <li>
+                                            @Html.LabelFor(m => m.Company, new { @class = "col-md-2 control-label" })
+                                            @Html.TextBoxFor(m => m.Company, new { @class = "form-control" })
+                                        </li>
+
+                                        <li>
+                                            @Html.LabelFor(m => m.Department, new { @class = "col-md-2 control-label" })
+                                            @Html.TextBoxFor(m => m.Department, new { @class = "form-control" })
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="column">
+                                    <ul>
+                                        <li class="last">
+                                            @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
+                                            @Html.DropDownList("Country", ViewBag.Countrylist as IEnumerable<SelectListItem>, new { @class = "form-control", @disabled = "disabled" })
+                                        </li>
+
+                                        <li>
+                                            @Html.LabelFor(m => m.Address1, new { @class = "col-md-2 control-label" }) <span style="color: #ff0000">*</span>
+                                            @Html.TextBoxFor(m => m.Address1, new { @class = "form-control" })
+                                        </li>
+
+                                        <li>
+                                            @Html.LabelFor(m => m.Address2, new { @class = "col-md-2 control-label" })
+                                            @Html.TextBoxFor(m => m.Address2, new { @class = "form-control" })
+                                        </li>
+
+                                        <li>
+                                            @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })<span style="color: #ff0000">*</span>
+                                            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                                        </li>
+
+                                        <li class="last">
+                                            @Html.LabelFor(m => m.State, new { @class = "col-md-2 control-label" })
+                                            @Html.DropDownList("State", ViewBag.Statelist as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                                        </li>
+
+                                        <li>
+                                            @Html.LabelFor(m => m.Zip, new { @class = "col-md-2 control-label" })<span style="color: #ff0000">*</span>
+                                            @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+                                        </li>
+
+                                        <li class="missedFieldRelative">
+                                            @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })<span style="color: #ff0000">*</span>
+                                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                                        </li>
+
+                                        <li class="missedFieldRelative">
+                                            @Html.LabelFor(m => m.CellPhone, new { @class = "col-md-2 control-label" })
+                                            @Html.TextBoxFor(m => m.CellPhone, new { @class = "form-control" })
+                                        </li>
+                                        <li>
+                                            @Html.CheckBox("sendTextMessg")<label style="width:270px">Would you like to receive status updates via text message?</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div>
+                                @Html.CheckBox("termandconditions")&nbsp; &nbsp;<label style="width:550px">By checking the box to the left I declare that all information to be submitted is correct and I agree to all terms & conditions.</label>
+                            </div>
+                            <div class="clear">&nbsp;</div>
+                            <div>
+                                <input type="submit" value="Continue >" class="FormButtonResetSearchPanel" name="action">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+}
